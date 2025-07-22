@@ -1,0 +1,90 @@
+---
+pagetitle: "Data Resources for the Charlottesville Region"
+listing: 
+  # - id: dashboard
+  #   type: grid
+  #   grid-columns: 1
+  #   sort: false
+  #   image-placeholder: images/ccp-grid-image.png
+  #   fields: [image, title, subtitle]
+  #   contents: 
+  #     - path: "cville-data-dashboard.qmd"
+  #       image: images/detail.png
+  #       title: "Charlottesville Regional Data Dashboard"
+  #       subtitle: "A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable."
+  #     # - path: https://virginiaequitycenter.shinyapps.io/cville-region/
+  #     #   image: images/ccp-grid-image.png
+  #     #   title: "Charlottesville Regional Data Dashboard"
+  #     #   subtitle: "A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable."
+  - id: featured
+    type: grid
+    grid-columns: 2
+    sort: false
+    image-placeholder: images/ccp-grid-image.png
+    fields: [image, title, description, date, categories]
+    date-format: "MMMM YYYY"
+    contents:
+      - path: https://communitypartnerships.github.io/community-wellbeing/
+        image: images/mural.jpeg
+        title: "Albemarle and Charlottesville Community Wellbeing Profiles"
+        date: "July 2025"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Education, Health, Housing, Youth & Families]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-6/
+        image: images/income-region-map-edit.png
+        title: "Orange Dot Report 6.0"
+        date: "October 2024"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Jobs & Wages, Housing]
+format:
+  html:
+    toc: false
+    link-external-newwindow: true
+    backgroundcolor: "#f7faff"
+    grid:
+      body-width: 950px
+execute:
+  cache: true
+  echo: false
+  message: false
+  warning: false
+---
+
+<header id="title-block-header" class="quarto-title-block default page-columns page-full" style="top: calc(-14px - 1rem);">
+<div class="quarto-title-banner page-columns page-full home-banner">
+<div class="quarto-title column-body">
+<div class="hero-container">
+<div class="post-update-text">
+<div class="heading">Dashboard</div>
+<div class="line"></div>
+<h1 class="banner-title"><span>Regional Data Dashboard</span></h1>
+<p class="description">A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable. We seek to pull together data commonly sought by partners and advocates advancing justice.</p>
+<a class="post-link" href="cville-data-dashboard.qmd">
+<span>Go to Dashboard </span>
+<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+</a>
+</div>               
+</div>
+</div>
+</div>
+</header>
+
+
+## Featured Reports
+
+::: {#featured}
+:::
+
+<a class="post-link" href="reports.qmd">
+<span>See all Reports </span>
+<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+</a>
+        
+## Who We Are
+
+We're the Community-Centered Analysis team at the UVA Center for Community Partnerships.
+
+<a class="post-link" href="https://communitypartnerships.virginia.edu/community-centered-analysis">
+<span> Learn more about us </span>
+<svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 448 512"><path d="M438.6 278.6c12.5-12.5 12.5-32.8 0-45.3l-160-160c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L338.8 224 32 224c-17.7 0-32 14.3-32 32s14.3 32 32 32l306.7 0L233.4 393.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0l160-160z"></path></svg>
+</a>

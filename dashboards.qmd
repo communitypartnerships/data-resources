@@ -1,0 +1,36 @@
+---
+title: "Regional Data Dashboards"
+# title-block-banner: "#232d4b"
+# title-block-banner-color: "#FFFFFF"
+listing: 
+  - id: dashboards
+    type: grid
+    grid-columns: 2
+    sort: false
+    image-placeholder: images/ccp-grid-image.png
+    fields: [image, title, subtitle, categories]
+    date-format: "MMMM YYYY"
+    contents:
+      - path: "cville-data-dashboard.qmd"
+        image: images/data-dashboard-screen.png
+        title: "Charlottesville Regional Data Dashboard"
+      - path: "climate-dashboard.qmd"
+        title: "Charlottesville Regional Climate Dashboard"
+        image: images/climate-app-screen.png
+format:
+  html:
+    toc: false
+    link-external-newwindow: true
+    backgroundcolor: "#f7faff"
+    grid:
+      body-width: 950px
+execute:
+  cache: true
+  echo: false
+  message: false
+  warning: false
+---
+
+::: {#dashboards}
+:::
+

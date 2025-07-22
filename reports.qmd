@@ -1,0 +1,86 @@
+---
+title: "Reports"
+# title-block-banner: "#232d4b"
+# title-block-banner: images/detail.png
+# title-block-banner-color: "#FFFFFF"
+listing: 
+  - id: reports
+    type: grid
+    grid-columns: 3
+    sort: false
+    image-placeholder: images/ccp-grid-image.png
+    fields: [image, title, description, date, categories]
+    categories: true
+    date-format: "MMMM YYYY"
+    contents:
+      - path: https://communitypartnerships.github.io/community-wellbeing/
+        image: images/mural.jpeg
+        title: "Albemarle and Charlottesville Community Wellbeing Profiles"
+        date: "July 2025"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Education, Health, Housing, Youth & Families]
+      - path: https://virginiaequitycenter.github.io/school-demographics/fall2024/fall2024_schooldemographics.html
+        title: "Local School Demographics"
+        image: images/school-demographics-map.png
+        date: "February 2025"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Education]
+      - path: https://virginiaequitycenter.github.io/cville-alb-gun-trauma/
+        title: "Gun Violence in Charlottesville & Albemarle"
+        image: images/gun-heat-map.png
+        date: "November 2024"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Community Safety]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-6/
+        title: "Orange Dot Report 6.0"
+        image: images/income-region-map-edit.png
+        date: "October 2024"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Jobs & Wages, Housing]
+      - path: https://virginiaequitycenter.github.io/Cville-Heat/cville-heat-report.html
+        title: "Charlottesville Urban Heat Islands"
+        image: "https://raw.githubusercontent.com/virginiaequitycenter/Cville-Heat/main/sun_skyseeker.jpg"
+        date: "January 2024"
+        date-format: "MMMM YYYY"
+        categories: [Climate Justice, Regional Data]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/stepping-stones/
+        title: "Stepping Stones Report"
+        image: images/sol-detail-edit.png
+        date: "June 2023"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Youth & Families, Education, Health, Housing]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/stepping-stones-supplement/
+        title: "Stepping Stones Supplemental Report"
+        image: images/stepping-stones-supplement.png
+        date: "July 2023"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Youth & Families, Education, Health, Housing]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-5/
+        title: "Orange Dot Report 5.0"
+        image: images/living-wage-detail.png
+        date: "October 2022"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Jobs & Wages]
+      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/albemarle-equity-profile/
+        title: "Albemarle County Equity Profile"
+        image: images/alb-equity-detail.png
+        date: "May 2021"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Education, Health, Housing]
+format:
+  html:
+    toc: false
+    link-external-newwindow: true
+    backgroundcolor: "#f7faff"
+    grid:
+      body-width: 950px
+execute:
+  cache: true
+  echo: false
+  message: false
+  warning: false
+---
+
+::: {#reports}
+:::
+

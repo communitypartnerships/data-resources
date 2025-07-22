@@ -1,0 +1,15 @@
+---
+pagetitle: "Charlottesville Regional Data Dashboard"
+description-meta: "A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable."
+categories: "Regional Data"
+format:
+  html:
+    toc: false
+---
+
+::: {.fullwidth}
+
+<iframe width="100%" height="100%" style="position: absolute; left: 0; top: 60px; bottom: 0; right: 0;" src="https://virginiaequitycenter.shinyapps.io/cville-region/"></iframe>
+
+:::
+

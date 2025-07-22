@@ -1,0 +1,14 @@
+---
+pagetitle: "Charlottesville Regional Climate Dashboard"
+categories: [Climate Justice, Regional Data]
+format:
+  html:
+    toc: false
+---
+
+::: {.fullwidth}
+
+<iframe width="100%" height="100%" style="position: absolute; left: 0; top: 60px; bottom: 0; right: 0;" src="https://virginiaequitycenter.shinyapps.io/climate-app/"></iframe>
+
+:::
+

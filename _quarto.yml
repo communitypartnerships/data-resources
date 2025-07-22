@@ -1,0 +1,63 @@
+project:
+  type: website
+  render:
+    - "index.qmd"
+    - "reports.qmd"
+    - "resources.qmd"
+    - "dashboards.qmd"
+    - "cville-data-dashboard.qmd"
+    - "climate-dashboard.qmd"
+  resources:
+  #   - "/pdf"
+    - "/images"
+website:
+  favicon: images/favicon.ico
+  description: "A hub for regional data tools and reports that enable data-informed advocacy to support community building and collective action for change."
+  open-graph: 
+    image: images/ccp-image-card.png
+    description: "A hub for regional data tools and reports that enable data-informed advocacy to support community building and collective action for change."
+  search: false
+  title: <span style="color:#3991D1">Charlottesville&nbsp;</span><span>Data Resource Hub</span>
+  navbar:
+    background: light
+    right:
+      - href: dashboards.qmd
+        text: Dashboards
+      - href: reports.qmd
+        text: Reports
+      - href: resources.qmd
+        text: Resources
+      # - href: charlottesville-key-outcomes.qmd
+      #   text: City of Charlottesville Profile
+      # - href: combined-area-outcomes.qmd
+      #   text: Area Profile
+    # right: 
+    #   - href: https://virginiaequitycenter.github.io/cville-equity-atlas/
+    #     text: Charlottesville Regional Data Resources
+    #     icon: box-arrow-up-right
+    #     target: _blank
+  page-footer:
+    background: light
+    left: |
+      [![](/images/uva-ccp-color.png){fig-alt="Center for Community Partnerships at UVA" width=320px }](https://communitypartnerships.virginia.edu/)
+    right:
+      - href: index.qmd
+        text: Home
+      - href: dashboards.qmd
+        text: Dashboards
+      - href: reports.qmd
+        text: Reports
+      - href: resources.qmd
+        text: Resources
+
+format:
+  html:
+    theme: cosmo
+    css: styles.css
+    toc: true
+    header-includes: |
+      <link rel="preconnect" href="https://fonts.googleapis.com" />
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+      <link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500&family=Poppins:ital,wght@0,300;0,400;0,500;1,300;1,400;1,500&display=swap" rel="stylesheet" />
+
+

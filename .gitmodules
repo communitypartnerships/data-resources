@@ -1,0 +1,3 @@
+[submodule "submodules/school-demographics"]
+	path = submodules/school-demographics
+	url = https://github.com/virginiaequitycenter/school-demographics

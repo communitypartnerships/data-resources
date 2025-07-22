@@ -5,8 +5,9 @@ project:
     - "reports.qmd"
     - "resources.qmd"
     - "dashboards.qmd"
-    - "cville-data-dashboard.qmd"
-    - "climate-dashboard.qmd"
+    - "dashboards/"
+    - "reports/"
+    - "!submodules/"
   resources:
   #   - "/pdf"
     - "/images"

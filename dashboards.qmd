@@ -11,10 +11,10 @@ listing:
     fields: [image, title, subtitle, categories]
     date-format: "MMMM YYYY"
     contents:
-      - path: "cville-data-dashboard.qmd"
+      - path: "dashboards/cville-data-dashboard.qmd"
         image: images/data-dashboard-screen.png
         title: "Charlottesville Regional Data Dashboard"
-      - path: "climate-dashboard.qmd"
+      - path: "dashboards/climate-dashboard.qmd"
         title: "Charlottesville Regional Climate Dashboard"
         image: images/climate-app-screen.png
 format:

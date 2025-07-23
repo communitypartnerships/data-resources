@@ -4,3 +4,6 @@
 [submodule "submodules/orange-dot"]
 	path = submodules/orange-dot
 	url = https://github.com/virginiaequitycenter/orange-dot
+[submodule "submodules/Cville-Heat"]
+	path = submodules/Cville-Heat
+	url = https://github.com/virginiaequitycenter/Cville-Heat

@@ -17,6 +17,24 @@ listing:
       - path: "dashboards/climate-dashboard.qmd"
         title: "Charlottesville Regional Climate Dashboard"
         image: images/climate-app-screen.png
+  - id: state
+    type: grid
+    grid-columns: 2
+    sort: false
+    image-placeholder: images/ccp-grid-image.png
+    fields: [image, title, description, categories]
+    date-format: "MMMM YYYY"
+    contents:
+      - path: https://virginiaequitycenter.shinyapps.io/va-evictors-catalog/
+        title: "Virginia Evictors Catalog"
+        description: "Resource providing insight into who is responsible for the highest number of court-based evictions across Virginia."
+        image: images/va-evictors-catalog.png
+        categories: [Housing Justice Atlas]
+      - path: https://virginiaequitycenter.github.io/vaequity-reading/
+        title: "Educational Outcomes in Virginia"
+        description: "Examine gaps in pass rates for Reading and Math SOL tests for VA school divisions."
+        image: images/reading-gap.png
+        categories: [Education]
 format:
   html:
     toc: false
@@ -34,3 +52,7 @@ execute:
 ::: {#dashboards}
 :::
 
+## State-wide Data Dashboards
+
+::: {#state}
+:::

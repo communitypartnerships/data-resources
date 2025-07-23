@@ -25,10 +25,7 @@ listing:
         date: "November 2024"
         categories: [Regional Data, Community Safety]
       - path: "reports/orange-dot-6.qmd"
-      - path: https://virginiaequitycenter.github.io/Cville-Heat/cville-heat-report.html
-        title: "Charlottesville Urban Heat Islands"
-        image: "https://raw.githubusercontent.com/virginiaequitycenter/Cville-Heat/main/sun_skyseeker.jpg"
-        date: "January 2024"
+      - path: "reports/cville-heat-report.qmd"
         categories: [Climate Justice, Regional Data]
       - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/stepping-stones/
         title: "Stepping Stones Report"

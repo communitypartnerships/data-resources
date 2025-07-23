@@ -21,7 +21,7 @@ listing:
     grid-columns: 2
     sort: false
     image-placeholder: images/ccp-grid-image.png
-    fields: [image, title, description, date, categories]
+    fields: [image, title, date, categories]
     date-format: "MMMM YYYY"
     contents:
       - path: https://communitypartnerships.github.io/community-wellbeing/
@@ -30,7 +30,7 @@ listing:
         date: "July 2025"
         date-format: "MMMM YYYY"
         categories: [Regional Data, Education, Health, Housing, Youth & Families]
-      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-6/
+      - path: "reports/orange-dot-6.qmd"
         image: images/income-region-map-edit.png
         title: "Orange Dot Report 6.0"
         date: "October 2024"

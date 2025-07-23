@@ -12,7 +12,7 @@ format:
     grid:
       body-width: 950px
 execute:
-  cache: false
+  cache: true
   echo: false
   message: false
   warning: false
@@ -292,7 +292,7 @@ Scroll down to see tables with counts and percents by school for student demogra
 ### Race & Ethnicity
 
 ```{r, results = 'asis'}
-
+#| column: page-inset-right
 # Load demographic table data
 load("../submodules/school-demographics/fall2024/data/2024tablesrace.Rdata")
 load("../submodules/school-demographics/fall2024/data/2024tablesdisadvantaged.Rdata")
@@ -380,7 +380,7 @@ columnGroups = list(
 ### Economic Status
 
 ```{r, results = 'asis'}
-
+#| column: page-inset-right
 # Build table - Economic status
 htmltools::browsable(
    tagList(
@@ -425,7 +425,7 @@ reactable(students2024disadvantaged, filterable = TRUE, minRows = 10,
 ### English Learners
 
 ```{r, results = 'asis'}
-
+#| column: page-inset-right
 # Build table - English Learners
 htmltools::browsable(
    tagList(

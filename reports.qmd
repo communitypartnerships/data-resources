@@ -24,11 +24,7 @@ listing:
         image: images/gun-heat-map.png
         date: "November 2024"
         categories: [Regional Data, Community Safety]
-      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-6/
-        title: "Orange Dot Report 6.0"
-        image: images/income-region-map-edit.png
-        date: "October 2024"
-        categories: [Regional Data, Jobs & Wages, Housing]
+      - path: "reports/orange-dot-6.qmd"
       - path: https://virginiaequitycenter.github.io/Cville-Heat/cville-heat-report.html
         title: "Charlottesville Urban Heat Islands"
         image: "https://raw.githubusercontent.com/virginiaequitycenter/Cville-Heat/main/sun_skyseeker.jpg"
@@ -44,10 +40,7 @@ listing:
         image: images/stepping-stones-supplement.png
         date: "July 2023"
         categories: [Regional Data, Youth & Families, Education, Health, Housing]
-      - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/orange-dot-5/
-        title: "Orange Dot Report 5.0"
-        image: images/living-wage-detail.png
-        date: "October 2022"
+      - path: "reports/orange-dot-5.qmd"
         categories: [Regional Data, Jobs & Wages]
       - path: https://virginiaequitycenter.github.io/cville-equity-atlas/reports/albemarle-equity-profile/
         title: "Albemarle County Equity Profile"

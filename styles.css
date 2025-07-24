@@ -34,6 +34,11 @@ body {
   line-height: 1.4;
 }
 
+/*section.level2 h2 {
+padding: 4px 22px;
+border-left: 6px solid #3991d1;
+}*/
+
 .downloadBtn {
   display: inline-flex;
   text-decoration: none;

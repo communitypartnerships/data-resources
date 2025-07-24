@@ -12,11 +12,11 @@ listing:
     date-format: "MMMM YYYY"
     contents:
       - path: "dashboards/cville-data-dashboard.qmd"
-        image: images/data-dashboard-screen.png
+        image: images/cville-mural.webp
         title: "Charlottesville Regional Data Dashboard"
       - path: "dashboards/climate-dashboard.qmd"
         title: "Charlottesville Regional Climate Dashboard"
-        image: images/climate-app-screen.png
+        image: images/kayaks.jpeg
   - id: state
     type: grid
     grid-columns: 2
@@ -28,12 +28,12 @@ listing:
       - path: https://virginiaequitycenter.shinyapps.io/va-evictors-catalog/
         title: "Virginia Evictors Catalog"
         description: "Resource providing insight into who is responsible for the highest number of court-based evictions across Virginia."
-        image: images/va-evictors-catalog.png
+        image: images/stephanie-rhee-7mhAiR_b4Ss-unsplash.jpg
         categories: [Housing Justice Atlas]
       - path: https://virginiaequitycenter.github.io/vaequity-reading/
         title: "Educational Outcomes in Virginia"
         description: "Examine gaps in pass rates for Reading and Math SOL tests for VA school divisions."
-        image: images/reading-gap.png
+        image: images/students-in-classroom.JPG
         categories: [Education]
 format:
   html:

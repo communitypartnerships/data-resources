@@ -15,17 +15,17 @@ listing:
       - path: https://virginiaequitycenter.shinyapps.io/va-evictors-catalog/
         title: "Virginia Evictors Catalog"
         description: "Resource providing insight into who is responsible for the highest number of court-based evictions across Virginia."
-        image: images/va-evictors-catalog.png
+        image: images/stephanie-rhee-7mhAiR_b4Ss-unsplash.jpg
         categories: [Housing Justice Atlas]
       - path: https://virginiaequitycenter.github.io/va-evictions/writs/writs_of_eviction.html
         title: "Writs of Eviction in Virginia"
         description: "Virginia passed a law to start collecting information on sheriff-executed writs of eviction. How does this data inform our understanding of eviction?"
-        image: images/writs_alluvial.png
+        image: images/robin-jonathan-deutsch-2neVOWaBAfc-unsplash.jpg
         categories: [Housing Justice Atlas]
       - path: https://virginiaequitycenter.github.io/vaequity-reading/
         title: "Educational Outcomes in Virginia"
         description: "Examine gaps in pass rates for Reading and Math SOL tests for VA school divisions."
-        image: images/reading-gap.png
+        image: images/students-in-classroom.JPG
         categories: [Education]
   - id: past
     type: grid

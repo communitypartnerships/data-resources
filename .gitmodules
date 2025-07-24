@@ -7,3 +7,9 @@
 [submodule "submodules/Cville-Heat"]
 	path = submodules/Cville-Heat
 	url = https://github.com/virginiaequitycenter/Cville-Heat
+[submodule "submodules/albequity_profile"]
+	path = submodules/albequity_profile
+	url = https://github.com/virginiaequitycenter/albequity_profile
+[submodule "submodules/stepping-stones"]
+	path = submodules/stepping-stones
+	url = https://github.com/virginiaequitycenter/stepping-stones

@@ -9,7 +9,7 @@ listing:
     sort: false
     image-placeholder: images/ccp-grid-image.png
     fields: [image, title, description, categories]
-    categories: true
+    categories: false
     date-format: "MMMM YYYY"
     contents:
       - path: https://virginiaequitycenter.shinyapps.io/va-evictors-catalog/
@@ -33,7 +33,7 @@ listing:
     sort: false
     image-placeholder: images/ccp-grid-image.png
     fields: [image, title, subtitle, categories]
-    categories: true
+    categories: false
     date-format: "MMMM YYYY"
     contents:
       - path: https://virginiaequitycenter.github.io/picturing-climate-stories/

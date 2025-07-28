@@ -69,7 +69,7 @@ border-left: 6px solid #3991d1;
 
 .navbar-nav .nav-link {
   font-family: "Oswald",Arial,sans-serif;
-  color: #232d4b;
+  color: #232d4b !important;
   font-weight: 500;
   font-size: 1.25rem;
 }

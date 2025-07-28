@@ -39,21 +39,27 @@ listing:
       - path: https://virginiaequitycenter.github.io/picturing-climate-stories/
         title: "Picturing Climate Justice"
         categories: [Climate Justice, Regional Data]
+        image: images/ccp-grid-image.png
       - path: https://virginiaequitycenter.shinyapps.io/albemarle_districts/
         title: "Visualizing Albemarle County Magisterial Redistricting with an Equity Lens"
         categories: [Regional Data]
+        image: images/ccp-grid-image.png
       - path: https://virginiaequitycenter.github.io/cvilleequity_covid/frontline/
         title: "Charlottesville Region’s Frontline Workers"
         categories: [Regional Data]
+        image: images/ccp-grid-image.png
       - path: https://virginiaequitycenter.github.io/cvilleequity_covid/SIP/
         title: "Covid-19 Shelter in Place Burden"
         categories: [Regional Data]
+        image: images/ccp-grid-image.png
       - path: https://virginiaequitycenter.github.io/cvilleequity_stopandfrisk/
         title: "Charlottesville Stop and Frisk"
         categories: [Regional Data, Institutional Accountability, Community Safety]
+        image: images/ccp-grid-image.png
       - path: https://voicesforequity.virginiaequitycenter.org/
         title: "Voices for Equity"
         categories: [Institutional Accountability]
+        image: images/ccp-grid-image.png
 format:
   html:
     toc: false

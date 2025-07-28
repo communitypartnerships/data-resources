@@ -1264,7 +1264,7 @@ income_map <- med_faminc_tract %>%
   mutate(estimate = round(estimate, -3),
          text = paste0("$", prettyNum((estimate/1000), big.mark=",", preserve.width="none"), "K")) %>%
   ggplot() +
-  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "../data/tempdata/") +
+  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "orange-dot-6_cache/") +
   geom_sf(aes(fill = estimate), color = "white") +
   geom_sf_text(aes(label = text), size = 3, color = "black") +
   scale_fill_stepsn(colors = rev(pal_inc),
@@ -1307,7 +1307,7 @@ below_ss_map <- ssw_tract %>%
   filter(ssw_group == "below") %>%
   mutate(text = paste0(round(percent,0), "%")) %>%
   ggplot() +
-  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "../data/tempdata/") +
+  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "orange-dot-6_cache/") +
   geom_sf(aes(fill = percent), color = "white") +
   geom_sf_text(aes(label = text), size = 3.5, color = "black") +
   scale_fill_stepsn(colors = pal_ssw,
@@ -1404,7 +1404,7 @@ income_map <- med_faminc_tract %>%
   mutate(text = case_when(is.na(estimate) ~ "",
                           .default = paste0("$", prettyNum(estimate, big.mark=",", preserve.width="none")))) %>%
   ggplot() +
-  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "../data/tempdata/") +
+  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "orange-dot-6_cache/") +
   geom_sf(aes(fill = estimate), color = "white") +
   geom_sf_text(aes(label = text), size = 4, color = "black") +
   scale_fill_stepsn(colors = rev(pal_inc),
@@ -1448,7 +1448,7 @@ below_ss_map <- ssw_tract %>%
   filter(ssw_group == "below") %>%
   mutate(text = paste0(round(percent,0), "%")) %>%
   ggplot() +
-  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "../data/tempdata/") +
+  annotation_map_tile(zoomin = 1, progress = "none", cachedir = "orange-dot-6_cache/") +
   geom_sf(aes(fill = percent), color = "white") +
   geom_sf_text(aes(label = text), size = 4, color = "black") +
   scale_fill_stepsn(colors = pal_ssw,

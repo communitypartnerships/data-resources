@@ -63,11 +63,11 @@ border-left: 6px solid #3991d1;
     color: #232d4b;
 }
 
-.navbar-dark .navbar-nav .nav-link.active {
+.navbar-nav .nav-link.active {
   color: #232d4b;
 }
 
-.navbar-dark .navbar-nav .nav-link {
+.navbar-nav .nav-link {
   font-family: "Oswald",Arial,sans-serif;
   color: #232d4b;
   font-weight: 500;

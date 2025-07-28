@@ -9,10 +9,11 @@ project:
     - "reports/"
     - "!submodules/"
   resources:
-    - "/pdfs"
-    - "/images"
+    - "pdfs/"
+    - "images/"
 website:
   favicon: images/favicon.ico
+  google-analytics: "G-Q05T97F4LC"
   description: "A hub for regional data tools and reports that enable data-informed advocacy to support community building and collective action for change."
   open-graph: 
     image: images/ccp-image-card.png

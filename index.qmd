@@ -1,21 +1,6 @@
 ---
 pagetitle: "Data Resources for the Charlottesville Region"
-listing: 
-  # - id: dashboard
-  #   type: grid
-  #   grid-columns: 1
-  #   sort: false
-  #   image-placeholder: images/ccp-grid-image.png
-  #   fields: [image, title, subtitle]
-  #   contents: 
-  #     - path: "cville-data-dashboard.qmd"
-  #       image: images/detail.png
-  #       title: "Charlottesville Regional Data Dashboard"
-  #       subtitle: "A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable."
-  #     # - path: https://virginiaequitycenter.shinyapps.io/cville-region/
-  #     #   image: images/ccp-grid-image.png
-  #     #   title: "Charlottesville Regional Data Dashboard"
-  #     #   subtitle: "A data and policy tool for leaders and advocates to advance a more just community and help citizens hold decision-makers accountable."
+listing:
   - id: featured
     type: grid
     grid-columns: 2

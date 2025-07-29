@@ -1,12 +1,9 @@
 [
   {
-    "listing": "/resources.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
+    "listing": "/dashboards.html",
     "items": [
-      "/reports/orange-dot-6.html"
+      "/dashboards/cville-data-dashboard.html",
+      "/dashboards/climate-dashboard.html"
     ]
   },
   {
@@ -22,10 +19,13 @@
     ]
   },
   {
-    "listing": "/dashboards.html",
+    "listing": "/index.html",
     "items": [
-      "/dashboards/cville-data-dashboard.html",
-      "/dashboards/climate-dashboard.html"
+      "/reports/orange-dot-6.html"
     ]
+  },
+  {
+    "listing": "/resources.html",
+    "items": []
   }
 ]

@@ -1,0 +1,44 @@
+---
+title: Page Not Found
+listing:
+  - id: 404-reports
+    type: grid
+    grid-columns: 3
+    sort: false
+    image-placeholder: images/ccp-grid-image.png
+    fields: [image, title, date, categories]
+    date-format: "MMMM YYYY"
+    contents:
+      - path: "reports/orange-dot-6.qmd"
+        image: images/income-region-map-edit.png
+        title: "Orange Dot Report 6.0"
+        date: "October 2024"
+        date-format: "MMMM YYYY"
+        categories: [Regional Data, Jobs & Wages, Housing]
+      - path: "reports/school-demographics-fall-2024.qmd"
+        image: images/students-at-table.jpeg
+      - path: "reports/stepping-stones-2023.qmd"
+        image: images/sol-detail-edit.png
+        categories: [Regional Data, Youth & Families, Education, Health, Housing]
+format: 
+  html: 
+    include-in-header:
+    - text: |
+        <style>
+          h1.title {
+            text-align: center !important;
+          }
+          h1.title::after {
+            margin: 1.5rem auto !important;
+          }
+        </style>
+---
+:::{.text-center}
+The requested page could not be found.
+
+Looking for one of our reports?
+
+::: {#404-reports}
+:::
+
+:::

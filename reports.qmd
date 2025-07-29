@@ -10,7 +10,7 @@ listing:
     sort: false
     image-placeholder: ../images/ccp-grid-image.png
     fields: [image, title, date, categories]
-    categories: false
+    categories: true
     date-format: "MMMM YYYY"
     contents:
       - path: https://communitypartnerships.github.io/community-wellbeing/

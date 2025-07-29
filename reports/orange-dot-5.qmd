@@ -64,9 +64,10 @@ border-left: 6px solid #3991d1;
 
 ```{r setup}
 #| include: false
-library(scales)
-library(tidyverse)
 
+
+library(tidyverse)
+library(scales)
 library(sf)
 library(leaflet)
 library(flextable)

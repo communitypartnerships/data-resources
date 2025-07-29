@@ -63,6 +63,12 @@ border-left: 6px solid #3991d1;
     color: #232d4b;
 }
 
+@media screen and (max-width: 768px) {
+  .navbar-title {
+    font-size: 1.2rem;
+}
+}
+
 .navbar-nav .nav-link.active {
   color: #232d4b;
 }
@@ -128,7 +134,7 @@ h5.listing-title {
 
 .post-link {
   display: inline-block;
-  margin-top: 1.5rem;
+ /* margin-top: 1.5rem;*/
   color: #232d4b !important;
   font-size: 18px;
   line-height: 1.6;
@@ -164,7 +170,8 @@ div.post-update-text {
   align-items: center;
   justify-content: space-between;
   color: #232d4b;
-  font-size: 2em;
+  /*font-size: 2em;*/
+  font-size: calc(1.325rem + 0.9vw);
   margin-top: 0;
   margin-bottom: 20px;
   text-transform: none;
@@ -189,5 +196,21 @@ div.header-image {
   background-position: 50% 50%;
   background-repeat: no-repeat;
   background-blend-mode: multiply;
+}
+
+@media screen and (max-width: 768px) {
+  div.hero-container {
+    top: 0;
+    padding: 0 !important;
+    width: 100%;
+  }
+
+  div.hero-container div.post-update-text {
+    padding: 1.5rem 7.5%;
+  }
+  
+  .post-update-text .heading, .post-update-text .line {
+    display: none;
+  }
 }
 

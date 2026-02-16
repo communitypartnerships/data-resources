@@ -12,16 +12,27 @@ listing:
       - path: "reports/orange-dot-6.qmd"
         image: images/income-region-map-edit.png
         title: "Orange Dot Report 6.0"
+        image-alt: "Simplified map of local counties."
         date: "October 2024"
         date-format: "MMMM YYYY"
         categories: [Regional Data, Jobs & Wages, Housing]
-      - path: "reports/school-demographics-fall-2024.qmd"
-        image: images/students-at-table.jpeg
+      - path: https://virginiaequitycenter.github.io/cville-alb-gun-trauma/
+        title: "Gun Violence in Charlottesville & Albemarle"
+        image: images/IMG_2121.jpg
+        image-alt: "Parking lot at night with street lamps." 
+        date: "November 2024"
+        categories: [Regional Data, Community Safety]
       - path: "reports/stepping-stones-2023.qmd"
         image: images/sol-detail-edit.png
+        image-alt: "Bar chart graphic."
         categories: [Regional Data, Youth & Families, Education, Health, Housing]
 format: 
   html: 
+    toc: false
+    link-external-newwindow: true
+    backgroundcolor: "#f7faff"
+    grid:
+      body-width: 950px
     include-in-header:
     - text: |
         <style>

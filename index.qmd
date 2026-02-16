@@ -11,12 +11,14 @@ listing:
     contents:
       - path: https://communitypartnerships.github.io/community-wellbeing/
         image: images/mural.jpeg
+        image-alt: "Mural on brick wall of holding hands and trees."
         title: "Albemarle and Charlottesville Community Wellbeing Profiles"
         date: "July 2025"
         date-format: "MMMM YYYY"
         categories: [Regional Data, Education, Health, Housing, Youth & Families]
       - path: "reports/orange-dot-6.qmd"
         image: images/income-region-map-edit.png
+        image-alt: "Simplified map of local counties."
         title: "Orange Dot Report 6.0"
         date: "October 2024"
         date-format: "MMMM YYYY"

@@ -13,10 +13,12 @@ listing:
     contents:
       - path: "dashboards/cville-data-dashboard.qmd"
         image: images/cville-mural.webp
+        image-alt: "Red, blue, and yellow mural with quotes and Charlottsville demographics." 
         title: "Charlottesville Regional Data Dashboard"
       - path: "dashboards/climate-dashboard.qmd"
         title: "Charlottesville Regional Climate Dashboard"
         image: images/kayaks.jpeg
+        image-alt: "Teens kayaking on a river in lush green landscape."
   - id: state
     type: grid
     grid-columns: 2
@@ -29,11 +31,13 @@ listing:
         title: "Virginia Evictors Catalog"
         description: "Resource providing insight into who is responsible for the highest number of court-based evictions across Virginia."
         image: images/stephanie-rhee-7mhAiR_b4Ss-unsplash.jpg
+        image-alt: "Street view of colorful row houses."
         categories: [Housing Justice Atlas]
-      - path: https://virginiaequitycenter.github.io/vaequity-reading/
+      - path: https://communitypartnerships.github.io/sol-test-outcomes/
         title: "Educational Outcomes in Virginia"
         description: "Examine gaps in pass rates for Reading and Math SOL tests for VA school divisions."
         image: images/students-in-classroom.JPG
+        image-alt: "Backs of students in a classroom."
         categories: [Education]
 format:
   html:

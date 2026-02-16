@@ -38,7 +38,7 @@ ul.task-list li input[type="checkbox"] {
 <link href="/data-resources/site_libs/quarto-html/quarto-syntax-highlighting-37eea08aefeeee20ff55810ff984fec1.css" rel="stylesheet" id="quarto-text-highlighting-styles">
 <script src="/data-resources/site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="/data-resources/site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="/data-resources/site_libs/bootstrap/bootstrap-73686734d5dfa62e594da620f1b7a793.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="/data-resources/site_libs/bootstrap/bootstrap-217498cafd9961e933e99712b8b019c4.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "language": {
     "search-no-results-text": "No results",
@@ -143,7 +143,7 @@ window.Quarto = {
 <meta property="og:image:width" content="1200">
 </head>
 
-<body class="nav-fixed quarto-light">
+<body class="nav-fixed fullcontent quarto-light">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -182,9 +182,7 @@ window.Quarto = {
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
 <!-- margin-sidebar -->
-    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar zindex-bottom">
-        
-    </div>
+    
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
@@ -216,7 +214,7 @@ window.Quarto = {
 <a href="/data-resources/./reports/orange-dot-6.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="/data-resources/images/income-region-map-edit.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="/data-resources/images/income-region-map-edit.png" class="thumbnail-image card-img" style="height: 150px;" alt="Simplified map of local counties.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -239,26 +237,26 @@ October 2024
 </div>
 </div></a>
 </div>
-<div class="g-col-1" data-index="1" data-categories="UmVnaW9uYWwlMjBEYXRhJTJDRWR1Y2F0aW9u" data-listing-date-sort="1738386000000" data-listing-file-modified-sort="1753725111369" data-listing-date-modified-sort="NaN" data-listing-reading-time-sort="32" data-listing-word-count-sort="6360">
-<a href="/data-resources/./reports/school-demographics-fall-2024.html" class="quarto-grid-link">
+<div class="g-col-1" data-index="1" data-categories="UmVnaW9uYWwlMjBEYXRhJTJDQ29tbXVuaXR5JTIwU2FmZXR5" data-listing-date-sort="1730433600000">
+<a href="https://virginiaequitycenter.github.io/cville-alb-gun-trauma/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="/data-resources/images/students-at-table.jpeg" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="/data-resources/images/IMG_2121.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="Parking lot at night with street lamps.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
-Local School Demographics
+Gun Violence in Charlottesville &amp; Albemarle
 </h5>
 <div class="listing-categories">
 
 <div class="listing-category" onclick="window.quartoListingCategory('UmVnaW9uYWwlMjBEYXRh'); return false;">Regional Data</div>
 
-<div class="listing-category" onclick="window.quartoListingCategory('RWR1Y2F0aW9u'); return false;">Education</div>
+<div class="listing-category" onclick="window.quartoListingCategory('Q29tbXVuaXR5JTIwU2FmZXR5'); return false;">Community Safety</div>
 
 </div>
 <div class="card-attribution card-text-small end">
 <div class="listing-date">
-February 2025
+November 2024
 </div>
 </div>
 </div>
@@ -268,7 +266,7 @@ February 2025
 <a href="/data-resources/./reports/stepping-stones-2023.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="/data-resources/images/sol-detail-edit.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="/data-resources/images/sol-detail-edit.png" class="thumbnail-image card-img" style="height: 150px;" alt="Bar chart graphic.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -390,6 +388,11 @@ June 2023
           if (link.dataset.originalHref !== undefined) {
             link.href = link.dataset.originalHref;
           }
+            // target, if specified
+            link.setAttribute("target", "_blank");
+            if (link.getAttribute("rel") === null) {
+              link.setAttribute("rel", "noopener");
+            }
         }
       }
     function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {

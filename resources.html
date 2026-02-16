@@ -66,7 +66,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-title','listing-description','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-description","listing-image","listing-categories"],
+      searchColumns: ["listing-title","listing-description","listing-image","listing-image-alt","listing-categories"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -94,7 +94,7 @@ ul.task-list li input[type="checkbox"] {
     const options = {
       valueNames: ['listing-image','listing-title','listing-subtitle','listing-categories',{ data: ['index'] },{ data: ['categories'] },{ data: ['listing-date-sort'] },{ data: ['listing-file-modified-sort'] }],
       
-      searchColumns: ["listing-title","listing-categories","listing-image"],
+      searchColumns: ["listing-title","listing-categories","listing-image","listing-image-alt"],
     };
 
     window['quarto-listings'] = window['quarto-listings'] || {};
@@ -233,7 +233,7 @@ window.Quarto = {
 <a href="https://virginiaequitycenter.shinyapps.io/va-evictors-catalog/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/stephanie-rhee-7mhAiR_b4Ss-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/stephanie-rhee-7mhAiR_b4Ss-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="Street view of colorful row houses.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -254,7 +254,7 @@ Virginia Evictors Catalog
 <a href="https://virginiaequitycenter.github.io/va-evictions/writs/writs_of_eviction.html" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/robin-jonathan-deutsch-2neVOWaBAfc-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/robin-jonathan-deutsch-2neVOWaBAfc-unsplash.jpg" class="thumbnail-image card-img" style="height: 150px;" alt="Neighborhood park view through chain link fence.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -275,7 +275,7 @@ Writs of Eviction in Virginia
 <a href="https://communitypartnerships.github.io/sol-test-outcomes/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/students-in-classroom.JPG" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/students-in-classroom.JPG" class="thumbnail-image card-img" style="height: 150px;" alt="Backs of students in a classroom.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -304,7 +304,7 @@ Educational Outcomes in Virginia
 <a href="https://virginiaequitycenter.github.io/picturing-climate-stories/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -324,7 +324,7 @@ Picturing Climate Justice
 <a href="https://virginiaequitycenter.shinyapps.io/albemarle_districts/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -342,7 +342,7 @@ Visualizing Albemarle County Magisterial Redistricting with an Equity Lens
 <a href="https://virginiaequitycenter.github.io/cvilleequity_covid/frontline/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -360,7 +360,7 @@ Charlottesville Region’s Frontline Workers
 <a href="https://virginiaequitycenter.github.io/cvilleequity_covid/SIP/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -378,7 +378,7 @@ Covid-19 Shelter in Place Burden
 <a href="https://virginiaequitycenter.github.io/cvilleequity_stopandfrisk/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">
@@ -400,7 +400,7 @@ Charlottesville Stop and Frisk
 <a href="https://voicesforequity.virginiaequitycenter.org/" class="quarto-grid-link">
 <div class="quarto-grid-item card h-100 card-left">
 <p class="card-img-top">
-<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;">
+<img loading="lazy" src="images/ccp-grid-image.png" class="thumbnail-image card-img" style="height: 150px;" alt="Light blue and yellow squares on dark blue background.">
 </p>
 <div class="card-body post-contents">
 <h5 class="no-anchor card-title listing-title">

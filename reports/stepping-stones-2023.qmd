@@ -789,13 +789,13 @@ __Sources:__ [U.S. Bureau of Economic Analysis, Regional Economic Accounts](http
 Labor force participation among young people and youth unemployment can shed light on both the health of the economy and the well-being of young people. High unemployment rates for youth may suggest economic struggles or a mismatch between the skills that young people possess and the skills employers are seeking.
 
   - __Data considerations:__ This metric is derived from the American Community Survey (ACS), a continuous survey given to a sample of housing unit addresses each month. Each year the survey releases 5-year estimates, pooling data from all surveyed households throughout a 60-month period. As a survey, rather than a census, the ACS provides estimates of population characteristics and these estimates have a degree of uncertainty, or sampling error, associated with them. Labor force participation and unemployment do not include discouraged workers who have searched for a job in the last year but have given up.
-  - __How is this measured?:__ The youth labor force participation rate is the number of 15-24 year olds who are employed or are seeking employment as a percentage of the number of residents aged 15-24. The youth unemployment rate is the number of 15-24 year olds who have reported that they do not have a job but are ready to work and have been seeking employment within the last 4 weeks as a percentage of the number of residents aged 15-24 in the labor force.
+  - __How is this measured?:__ The youth labor force participation rate is the number of 16-19 year olds who are employed or are seeking employment as a percentage of the number of residents aged 16-19. The youth unemployment rate is the number of 16-19 year olds who have reported that they do not have a job but are ready to work and have been seeking employment within the last 4 weeks as a percentage of the number of residents aged 16-19 in the labor force.
 
 #### Notable Trends {.unnumbered} 
   - Youth participation in the labor force in both Charlottesville and Albemarle is below that of the state overall. In recent years, labor force participation of Charlottesville youth has grown relative to that of young people in Albemarle. In 2021, 32% of Charlottesville youth were in the labor force compared to 24% of Albemarle youth.
   - Youth experienced similar rates of unemployment from 2011 to 2015 in both Charlottesville and Albemarle. From 2016 to 2019, the youth unemployment rate in Charlottesville jumped, peaking at 23%, while the youth unemployment rate in Albemarle fell, hovering around 8%. In recent years the youth unemployment rate has declined in both localities.
 
-##### Percent of Youth (15-24) Participating in the Labor Force for Albemarle County, City of Charlottesville, and Virginia
+##### Percent of Youth (16-19) Participating in the Labor Force for Albemarle County, City of Charlottesville, and Virginia
 ```{r, fig.alt = "Line chart with y-axis showing percent of youth, x-axis showing ACS survey period, from 2005-2010 to 2016-2021, and lines for percent of youth in the labor force for Albemarle, Charlottesville, and Virginia. For 2016-2021 percents were 24% for Albemarle and 32% for Charlottesville."}
 youth_employment <- read_csv("../submodules/stepping-stones/data/youth_employment_status.csv")
 
@@ -828,7 +828,7 @@ youth_employment %>%
   labs(color = "")
 ```
 
-##### Percent of Youth (15-24) in the Labor Force Experiencing Unemployment for Albemarle County, City of Charlottesville, and Virginia
+##### Percent of Youth (16-19) in the Labor Force Experiencing Unemployment for Albemarle County, City of Charlottesville, and Virginia
 ```{r, fig.alt = "Line chart with y-axis showing percent of youth in labor force, x-axis showing ACS survey period, from 2005-2010 to 2016-2021, and lines for percent of youth unemployment for Albemarle, Charlottesville, and Virginia. For 2016-2021 percents were 8% for Albemarle and 7% for Charlottesville."}
 youth_employment %>%
   ggplot(aes(x = survey_period, y = unemployment_rate, color = locality, group = locality)) +

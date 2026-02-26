@@ -11,7 +11,7 @@ format:
     grid:
       body-width: 950px
 execute:
-  cache: true
+  # cache: true
   echo: false
   message: false
   warning: false
@@ -193,6 +193,8 @@ map <- leaflet() %>%
                "<table style=\"border: 1px solid black\" rules=all >","<tr><th></th><th 
                style=text-align:center>",students_hs$school," </th><th style=text-align:center> ",students_hs$division,"</th></tr>","<tr><th style=text-align:left>Total Count </th><td 
                style=text-align:center>",students_hs$students," </td><td style=text-align:center>",students_hs$d_total_count,"</td></tr>",
+                "<tr><th      
+               style=text-align:left>White </th><td style=text-align:center>",students_hs$perc_white,"%</td><td style=text-align:center>",students_hs$d_white,"%</td></tr>",
                                   "<tr><th 
                style=text-align:left>Black </th><td style=text-align:center>",students_hs$perc_black,"%</td><td style=text-align:center>",students_hs$d_black,"%</td></tr>",
                                   "<tr><th 
@@ -205,8 +207,6 @@ map <- leaflet() %>%
                style=text-align:left>Nat. HI/Pacific </th><td style=text-align:center>",students_hs$perc_nhpi,"%</td><td style=text-align:center>",students_hs$d_nhpi,"%</td></tr>",
                                   "<tr><th 
                style=text-align:left>Amer. Ind. </th><td style=text-align:center>",students_hs$perc_aian,"%</td><td style=text-align:center>",students_hs$d_aian,"%</td></tr>",
-                                  "<tr><th      
-               style=text-align:left>White </th><td style=text-align:center>",students_hs$perc_white,"%</td><td style=text-align:center>",students_hs$d_white,"%</td></tr>",
                                   "<tr><th 
                style=text-align:left>Econ. Disadvantaged </th><td style=text-align:center>",students_hs$perc_disadv,"%</td><td style=text-align:center>",students_hs$d_disadv,"%</td></tr>",
                                   "<tr><th 
@@ -246,7 +246,7 @@ map <- leaflet() %>%
                                   "<tr><th 
                style=text-align:left>Econ. Disadvantaged </th><td style=text-align:center>",students_elem_mid$perc_disadv,"%</td><td style=text-align:center>",students_elem_mid$d_disadv,"%</td></tr>",
                                    "<tr><th 
-               style=text-align:left>English Learners </th><td style=text-align:center>",students_elem_mid$perc_el,"%</td><td style=text-align:center>",students_elem_mid$d_perc_el,"%</td></tr>",
+               style=text-align:left>English Learners </th><td style=text-align:center>",students_elem_mid$perc_el,"%</td><td style=text-align:center>",students_elem_mid$d_el,"%</td></tr>",
                                    "</table>") %>%
                      lapply(htmltools::HTML),
              labelOptions = labelOptions(noHide = F, style = list("font-family" = "Arial", "font-size" = "12px")),

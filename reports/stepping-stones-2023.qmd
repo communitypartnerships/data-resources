@@ -1203,7 +1203,7 @@ Infant mortality measures the rate at which babies die before their first birthd
   - The rate of infant deaths has declined in each locality and throughout Virginia in the last two decades. The improvement has been especially substantial in Charlottesville where the 3-year rolling average declined steadily between 2006 (12 per 1,000) and 2014 (3 per 1,000), before ticking up again.
   - In Albemarle, the rate was steady at 5 deaths per 1,000 births from 2001-2005, edged up to 7 per 1,000 in 2006-2009, and fell to 2-3 per 1,000 until 2018, when there was an increase. 
 
-##### Percent of Infants who Died before their 1st Birthday for Albemarle County, City of Charlottesville, and Virginia
+##### Rate per 1,000 Births of Infants who Died before their 1st Birthday for Albemarle County, City of Charlottesville, and Virginia
 ```{r, fig.alt = "Line chart with y-axis showing percent of infants, x-axis showing three-year period, from 2000-2002 to 2018-2020, and lines for percent of infant deaths for Albemarle, Charlottesville, and Virginia. In 2018-2020 percents were 6% for Albemarle and 3% for Charlottesville."}
 infant_mortality <- read_csv("../submodules/stepping-stones/data/infant_mortality.csv")
 infant_mortality <- infant_mortality %>%
@@ -1214,7 +1214,7 @@ infant_mortality <- infant_mortality %>%
                        "Commonwealth Of Virginia" = "Virginia"),
          three_yr_period = paste0(as.character(year-1),"-",as.character(year+1)),
          label = ifelse((!locality %in% "Virginia") & (three_yr_period %in% str_sort_last(three_yr_period)),
-                         paste0(as.character(round(rate_3yr, digits = 0)), "%"), NA))
+                         paste0(as.character(round(rate_3yr, digits = 0))), NA))
 
 infant_mortality %>% 
   ggplot(aes(x = three_yr_period, y = rate_3yr, color = locality, group = locality)) +
@@ -1224,8 +1224,8 @@ infant_mortality %>%
                   size = 3.5, fontface = "bold", nudge_x = 1.1, show.legend = FALSE, min.segment.length = Inf) +
   scale_color_manual(values = three_category_palette) +
   scale_y_continuous(limits = c(0, 60),
-                     labels = label_percent(scale = 1), 
-                     name = "Percent of Infants") + 
+                     # labels = label_percent(scale = 1), 
+                     name = "Rate per 1,000 births") + 
   scale_x_discrete(name = "Three-Year Period") +
   theme_minimal() +
   theme(text = element_text(size = 14),

@@ -13,6 +13,10 @@ listing:
     categories: true
     date-format: "MMMM YYYY"
     contents:
+      - path: "reports/stepping-stones-2026.qmd"
+        title: "Stepping Stones 2026 Report"
+        image: images/sol-detail-edit.png
+        image-alt: "Simplified line chart illustration."
       - path: "reports/school-demographics-fall-2025.qmd"
         image: images/students-at-table.jpeg
         image-alt: "Students working at a table viewed from above."
@@ -36,10 +40,12 @@ listing:
         image-alt: "White sun in center of yellow sky."
         categories: [Climate Justice, Regional Data]
       - path: "reports/stepping-stones-2023.qmd"
+        title: "Stepping Stones 2023 Report"
         image: images/sol-detail-edit.png
         image-alt: "Simplified line chart illustration."
         categories: [Regional Data, Youth & Families, Education, Health, Housing]
       - path: "reports/stepping-stones-supplement-2023.qmd"
+        title: "Stepping Stones 2023 Supplemental Report"
         image: images/stepping-stones-supplement.png
         image-alt: "Bar chart graphic."
         categories: [Regional Data, Youth & Families, Education, Health, Housing]

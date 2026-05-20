@@ -1,0 +1,2025 @@
+---
+title: "Stepping Stones Report"
+subtitle: "Community Well-Being of Children and Families in Charlottesville and Albemarle"
+date: "May 2026"
+date-format: "MMMM YYYY"
+image: ../../images/sol-detail-edit.png
+image-alt: "Simplified line chart illustration."
+categories: [Regional Data, Youth & Families, Education, Health]
+format: 
+  html:
+    embed-resources: true
+    toc: true
+    toc_depth: 3
+    link-external-newwindow: true
+execute:
+  cache: true
+  echo: false
+  message: false
+  warning: false
+---
+```{css, echo=FALSE}
+section.level2 h2 {
+padding: 4px 22px;
+margin: 0 0 22px;
+border-left: 6px solid #3991d1;
+}
+
+h4, h5 {
+  font-family: "Poppins",Arial,sans-serif;
+  font-size: 1.25rem;
+}
+div.small-h3 h3 {
+  font-size: 1.5rem;
+}
+```
+
+```{r setup}
+#| include: false
+
+# Libraries ----
+library(tidyverse)
+library(scales)
+library(janitor)
+library(highcharter)
+
+# Color palette ----
+locality_pal <- c("#193CBC", "#589ACF", "#FAC484")
+
+```
+
+[Download Report PDF](../pdfs//stepping-stones-2026-final.pdf){.external target="_blank"}
+</br>
+[Download Executive Summary PDF](../pdfs//stepping-stones-2026-summary-final.pdf){.external target="_blank"}
+
+<hr>
+
+## Introduction
+
+The Stepping Stones Report provides trend data for a selection of measures on the well-being of children and families in the City of Charlottesville and Albemarle County. Youth and family development is shaped by multiple interrelated domains. Measures in this report are presented in four sections: Education; Economic and Family Stability; Health; and School and Community Disciplinary Actions. In bringing together data across these domains, we can describe the experiences and environments shaping young people in our community. The goal is to create a data-informed understanding of our collective trajectory, encourage dialogue, and promote action to improve the lives of all who reside in our community.
+
+### Summary & Report PDF
+
+[Stepping Stones 2026 Executive Summary](../pdfs//stepping-stones-2026-summary-final.pdf){.external target="_blank"}
+
+This interactive online version of the Stepping Stones Report is also available as a PDF: [Stepping Stones 2026 Report PDF](../pdfs//stepping-stones-2026-final.pdf){.external target="_blank"}
+
+### Approach
+
+In updating this community resource, we followed key principles of data equity and ethics, including openness, reproducibility, and contextualization.
+
+**Open:** Since this report began, there has been a significant movement to make data from public agencies more open and available. We leverage open data as much as possible, gathering measures from publicly maintained sites and collections. This ensures we are measuring the same conditions, behaviors, or outcomes over time.
+
+**Reproducible:** These updates include building processes that are repeatable for future years and are well-documented for future researchers. The data collection and corresponding code are documented and made publicly available in a GitHub repository.
+
+**Contextualized:** The report is divided into sections based on the nature of the measures and their source. For each metric, we provide an overview of how the measure impacts youth and community well-being, present visualizations and highlight key trends, and note the sources and limitations of the data.
+
+An important piece of context missing from this report is representation of racial disparities in the outcomes shown here. Many of the metrics we highlight in this report disproportionately impact youth of color due to long-standing systemic racial inequality in our region and the country. Although we only display data for the populations as a whole in this report, understanding how these metrics differentially impact youth depending on their racial identity is critical to promoting racial equity in the region.
+
+### Our Youth
+
+These data represent the youth in our community–your children and their friends, the children you see at your grocery store or waiting at the bus stop, and all the children you know in your community are included here. Although these graphs show single outcomes in isolation, none of these data exist in a vacuum. The environments we prepare for youth in our community, their families, the neighborhoods where they live, and their intersecting identities all provide important context for understanding each of these individual outcomes. We encourage you to keep the children you know in mind, and consider how we can do better by them and future generations.
+
+### Contributions
+
+The 2026 Stepping Stones Report was produced through a collaboration between the Center for Community Partnerships at UVA and the City of Charlottesville and Albemarle County’s respective Departments of Human Services.
+
+The first Stepping Stones Report was published by the Charlottesville/Albemarle Commission on Children and Families (CCF) in 2000. After the CCF was dissolved in 2012, the City of Charlottesville’s Department of Human Services (DHS) began stewarding the Stepping Stones Report. In 2023, the UVA Center for Community Partnerships joined the collaboration in producing the report. We continue to build on the foundation established by the CCF Data Management Work Group and the knowledge cultivated by Charlottesville DHS, Albemarle DHS, as well as the administrators and agency experts who have provided insight for the last two decades.
+
+## Education
+
+### Kindergarten Readiness
+
+Children are identified as kindergarten ready if they meet benchmarks in literacy, mathematics, self-regulation, and social skills. These benchmarks are part of the [Virginia Kindergarten Readiness Program (VKRP)](https://vkrponline.org/){.external target="_blank"}: proactive, preventive screening measures that assist teachers, schools, and programs in providing differentiated, targeted instruction to meet each child’s needs.
+
+-   **Data considerations:** The fall overall benchmark is based on the expected skill levels of a kindergarten student at the beginning of the academic year. All kindergarten students in public schools are required to take the assessment in the fall and spring. Fall 2024 reflects the first year that the Virginia Language and Literacy Screening System (VALLS), used for the literacy benchmark, was implemented statewide. This replaced the Phonological Awareness Literacy Screening (PALS).
+
+-   **How is this measured?:** This measure represents the number of kindergarten students who are at or above kindergarten readiness benchmarks as a percent of all kindergarten students screened in the fall assessment.
+
+#### Notable Trends
+
+-   In Fall 2025, kindergarten students in Albemarle and Charlottesville were above the state overall in meeting the readiness benchmark, an increase from the prior year.
+
+-   In the most recent fall assessment, 59% of Albemarle kindergartners and 58% of Charlottesville kindergartners met the overall readiness benchmark.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-kinder
+#| fig-cap: "Percent of kindergartners meeting overall readiness benchmark in the 2024 and 2025 fall assessments for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/kindergarten_readiness.csv")
+
+columnchart <- df %>% 
+  hchart('column', hcaes(x = year, y = round(percent_kindergartners_ready,0), group = name)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = 'Fall Assessment Year'), labels = list(style = list(fontSize = '1.2em'))) %>%
+  hc_yAxis(min = 0, max = 100,
+           title = list(text = "Percent of Kindergarten Students"),
+           labels = list(format = '{text}%')) %>%
+  hc_colors(locality_pal) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br>Fall Assessment Year: <b>' + this.point.year + '</b></br>Percent: <b>' + this.y + '%</b>'
+  }")) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}%', enabled = TRUE))) %>%
+  hc_title(text = 'Percent of Kindergartners Meeting Overall Readiness Benchmark',
+           align = 'left') %>%
+  hc_caption(text = "Data Source: Virginia Early Childhood Foundation",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+columnchart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-kinder-img
+#| fig-cap: "Percent of kindergartners meeting overall readiness benchmark in the 2024 and 2025 fall assessments for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-1-percent-of-kindergartner.png")
+```
+:::
+
+### Standards of Learning
+
+The Virginia Department of Education’s Standards of Learning (SOL) outline minimum expectations of student knowledge at each grade level in a range of subjects. SOL tests are administered in all Virginia public schools starting in 3rd grade, and the resulting pass rates are used to assess student achievement, evaluate school and district performance, and determine whether schools are meeting state and federal standards. Student performance is graded on a scale of 0-600 with 400-499 representing pass proficiency and 500 and above representing advanced proficiency.
+
+The Virginia Board of Education revised both math and reading SOLs to raise standards and implemented these in the math SOL tests in 2012 and the reading SOL tests in 2013. Mirroring the trend in the state as a whole, both Charlottesville and Albemarle divisions saw a notable decline in pass rates for reading and math across 3rd and 5th grades in the years these changes were implemented.
+
+-   **Data considerations:** SOL tests are administered to students enrolled in public schools, and do not account for students who are homeschooled or attend private schools. Further, SOL tests were not administered at the end of the 2019-2020 school year due to closures during the COVID-19 pandemic. While traditionally participation on the SOL tests has been high (approximately 95%), participation dropped notably in 2020-2021 (approximately 70%) as schools reopened with COVID health precautions.
+
+-   **How is this measured?:** The pass rate is the number of students in a given grade who passed the math or reading SOL test (i.e., scoring 400 or above) for that grade level as a percent of the total number of students in that grade who took the math or reading SOL test.
+
+### Math: Grade 3 and Grade 5
+
+Math is a fundamental subject that is necessary for success in many college and career paths, and children who are proficient at math will be able to access a wide range of paths.
+
+#### Notable Trends
+
+-   Math SOL test pass rates have been improving since the steep drop in 2021 after schools reopened after the first wave of the COVID-19 pandemic.
+
+-   CCS and ACPS have experienced similar pass rates in 3rd grade math throughout 2010 to present. 5th grade pass rates in CCS, though, dropped notably below those in ACPS in the years following the 2012 revisions.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df_sol <- read_csv("../submodules/stepping-stones-2026/data/sol_pass_rates.csv") %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df <- df_sol %>% filter(subject == "Mathematics") %>% filter(test_level == "Grade 3")
+df$percent <- df$pass_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$pass_count, big.mark = ",")
+
+title <- "Percent of Students who Pass the 3rd Grade Math SOL Test"
+ytext <- "Percent of Students taking SOL"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+file_name <- "sol_pass_rates_math_3"
+
+```
+
+```{r}
+#| label: fig-series-sol
+#| fig-cap: "Percent of students who pass the 3rd grade math SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+df <- df %>% mutate(percent = round(percent,0))
+
+df_pre <- df %>% filter(year >= 2010 & year < 2020)
+df_post <- df %>% filter(year > 2020)
+
+series_sol_chart <- df_pre %>% 
+  hchart("line", hcaes(x = year, y = percent, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           # labels = list(allowOverlap = TRUE, step = 1, style = list(fontSize = '1.2em')),
+           allowDecimals = FALSE,
+           # endOnTick = TRUE,
+           tickInterval = 1,
+           # tickAmount = 16,
+           plotLines = list(
+                 list(
+                   label = list(text = "SOLs not conducted in 2020 </br>due to the COVID-19 Pandemic", rotation = 0),
+                   width = 1,
+                   value = 2020,
+                   zIndex = 1,
+                   dashStyle = "LongDash"
+                 )
+               )) %>%
+  hc_yAxis(min = 0, max = 100,
+           title = list(text = ytext),
+           labels = list(format = '{text}%')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}%', enabled = TRUE)),
+                 line = list(marker = list(enabled = TRUE, symbol = list("circle")))) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br>School year: <b>' + this.point.school_year + '</b></br>Pass Rate: <b>' + this.y + '%</b></br>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  # hc_subtitle(text = '2018-2023',
+  #             align = "left",
+  #             style = list(fontSize = '1.4em')) %>%
+  hc_caption(text = "Data Source: Virginia Department of Education, Annual Statewide Assessment Result Build-A-Table",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_add_series(data =  df_post, type = "line", mapping = hcaes(x = year, y = percent, group = label), showInLegend = FALSE) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600,
+               filename = file_name
+               # width = 200
+               # formAttributes=list(target="_blank"),
+               # buttons=list(contextButton=list(
+               #   # text="Export", theme=list(fill="transparent"),
+               #   menuItems=myMenuItems))
+  )
+
+series_sol_chart
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-series-sol-img
+#| fig-cap: "Percent of students who pass the 3rd grade math SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-2-sol_pass_rates_math_3.png")
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-sol-5
+#| fig-cap: "Percent of students who pass the 5th grade math SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+# Set data
+df <- df_sol %>% filter(subject == "Mathematics") %>% filter(test_level == "Grade 5")
+df$percent <- df$pass_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$pass_count, big.mark = ",")
+
+title <- "Percent of Students who Pass the 5th Grade Math SOL Test"
+ytext <- "Percent of Students taking SOL"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+file_name <- "sol_pass_rates_math_5"
+
+<<fig-series-sol>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-sol-5-img
+#| fig-cap: "Percent of students who pass the 5th grade math SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-3-sol_pass_rates_math_5.png")
+```
+:::
+
+### Reading: Grade 3 and Grade 5
+
+Reading test scores measure a students’ ability to read at grade level. Not meeting reading proficiency has lasting impacts on student academic success, degree attainment, and future earnings. [Third grade reading](https://www.aecf.org/resources/early-warning-why-reading-by-the-end-of-third-grade-matters){.external target="_blank"} is particularly important as this is when children transition from learning to read to reading to learn.
+
+#### Notable Trends
+
+-   Reading SOL test pass rates have returned to pre-pandemic rate, after initially declining in 2021.
+
+-   CCS and ACPS have experienced similar pass rates in 3rd grade reading throughout 2010 to present.
+
+-   5th grade passing rates in CCS dropped notably below those in ACPS after the 2013 revisions. These apparent differences in 5th grade could be, in part, due to the changing population of students during the middle school years, as the Charlottesville region is home to multiple private middle schools.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-sol-read3
+#| fig-cap: "Percent of students who pass the 3rd grade reading SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+# Set data
+df <- df_sol %>% filter(subject == "English:Reading") %>% filter(test_level == "Grade 3")
+df$percent <- df$pass_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$pass_count, big.mark = ",")
+
+title <- "Percent of Students who Pass the 3rd Grade Reading SOL Test"
+ytext <- "Percent of Students taking SOL"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+file_name <- "sol_pass_rates_reading_3"
+
+<<fig-series-sol>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-sol-read3-img
+#| fig-cap: "Percent of students who pass the 3rd grade reading SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-4-sol_pass_rates_reading_3.png")
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-sol-read5
+#| fig-cap: "Percent of students who pass the 5th grade reading SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+# Set data
+df <- df_sol %>% filter(subject == "English:Reading") %>% filter(test_level == "Grade 5")
+df$percent <- df$pass_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$pass_count, big.mark = ",")
+
+title <- "Percent of Students who Pass the 5th Grade Reading SOL Test"
+ytext <- "Percent of Students taking SOL"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+file_name <- "sol_pass_rates_reading_5"
+
+<<fig-series-sol>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-sol-read5-img
+#| fig-cap: "Percent of students who pass the 5th grade reading SOL test, 2009-10 through 2024-25 school years at ACPS, CCS and Virginia public schools. SOL tests were not conducted for the 2019-20 school year due to the COVID-19 pandemic."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-5-sol_pass_rates_reading_5.png")
+```
+:::
+
+### Students Eligible for Special Education Services
+
+Special education services are intended to ensure students with disabilities have access to a meaningful public education. The Individuals with Disability Education Act (IDEA) guarantees a free appropriate public education to all eligible children with documented disabilities. Students with a disability – hearing impairment, including deafness; speech or language impairment; visual impairment, including blindness; orthopedic impairment; autism; traumatic brain injury; developmental delay; other health impairment; intellectual disability; specific learning disability; serious emotional disturbance; or multiple disabilities – receive special education and related services outlined in an Individual Education Program (IEP) or other service plan. [See VDOE for more details](https://www.doe.virginia.gov/programs-services/special-education){.external target="_blank"}.
+
+-   **Data considerations:** These data are collected for the administration of special education services and represent the record of children deemed eligible for special education services. Eligibility is determined through evaluation processes to identify disabilities and determine needed services. Increasing numbers of students receiving special education services can reflect increased access to needed resources, as disability diagnoses become less stigmatized.
+
+-   **How is this measured?:** This measure is the number of students identified as eligible for special education services as a percent of all students in the school division.
+
+#### Notable Trends
+
+-   From 2011 through 2017, the percentage of students receiving special education services in Albemarle County Public Schools (ACPS) was below that for Charlottesville City Schools (CCS).
+
+-   The percent in ACPS increased modestly after 2015 and has been very similar to the percent in CCS since. This modest increase mirrors the trend nationally. From 2009–10 through 2020–21, the number of students ages 3–21 who received special education services under IDEA increased from 13% of total public school enrollment to 15% of total public school enrollment ([NCES](https://nces.ed.gov/programs/coe/indicator/cgg/students-with-disabilities#fn1){.external target="_blank"}).
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/special_ed_services.csv")  %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$percent <- df$percent_sped
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$total_sped, big.mark = ",")
+
+title <- "Percent of Students Identified to Receive Special Education Services"
+ytext <- "Percent of Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education, December 1 Build-A-Table"
+
+```
+
+```{r}
+#| label: fig-series-percent
+#| fig-cap: "Percent of students identified to receive special education services for the 2010-11 through 2024-25 school years at ACPS, CCS and Virginia public schools."
+
+df <- df %>% filter(year >= 2010)
+
+series_percent_chart <- df %>% 
+  mutate(percent = round(percent,0)) %>% 
+  hchart("line", hcaes(x = year, y = percent, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 100,
+           title = list(text = ytext),
+           labels = list(format = '{text}%')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}%', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br><b>' + this.key + '</b></br>' + 'Percent: <b>' + this.y + '%</b></br>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  # hc_subtitle(text = '2018-2023',
+  #             align = "left",
+  #             style = list(fontSize = '1.4em')) %>%
+  hc_caption(text = source_text,
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_percent_chart
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-series-percent-img
+#| fig-cap: "Percent of students identified to receive special education services for the 2010-11 through 2024-25 school years at ACPS, CCS and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-6-percent-of-students-iden.png")
+```
+:::
+
+### Students Eligible for English Language Instruction
+
+An English Learner (EL) is a student who is not fully proficient in English and requires language-based accommodations to effectively learn during their K-12 education. To support the growing population of multilingual students in Virginia, the [Virginia Department of Education](https://www.doe.virginia.gov/teaching-learning-assessment/specialized-instruction/english-learner-education){.external target="_blank"} provides resources for educators in providing instruction and services to English Learners (ELs).
+
+-   **Data considerations:** An English Language Screening assessment is administered to potential EL students during the enrollment process and annually to current EL students to determine eligibility for English language instructional services. The data can be used to provide a full picture of the current composition of EL students in public schools.
+
+-   **How is this measured?:** The count of identified students who speak English as a second or other language and are emergent in the speaking, reading, writing, and/or understanding of English as a percent of all students in the school division.
+
+#### Notable Trends
+
+-   The percentage of English Language Learners in both Charlottesville City Schools (CCS) and Albemarle County Public Schools (ACPS) has grown between 2009-2025, mirroring growth in the state overall.
+
+-   In recent years, the increase has been larger in CCS. In the 2025-26 school year, 16% of CCS students were identified as current English Language Learners compared to 11% of ACPS students and 11% of students in Virginia.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-ell
+#| fig-cap: "Percent of students eligible for English language instruction for the 2009-10 through 2025-26 school years at ACPS, CCS and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/english_language_learners.csv") %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$percent <- df$pct_english_learners
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$english_learners, big.mark = ",")
+
+title <- "Percent of Students Eligible for English Language Instruction"
+ytext <- "Percent of Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education, Fall Membership Build-A-Table"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-ell-img
+#| fig-cap: "Percent of students eligible for English language instruction for the 2009-10 through 2025-26 school years at ACPS, CCS and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-7-percent-of-students-elig.png")
+```
+:::
+
+### Absenteeism
+
+Attendance has been increasingly the focus of attention among school divisions and educators. Regular attendance is a significant factor in a student’s success, as chronic absenteeism correlates to low academic achievement and is a powerful predictor of dropout rates. In the years following the initial onset of the COVID-19 pandemic, rates of chronic absenteeism in schools throughout the U.S. have skyrocketed: [national-level data](https://www.nytimes.com/interactive/2024/03/29/us/chronic-absences.html){.external target="_blank"} shows that rates of chronic absenteeism in U.S. schools increased from 15% in 2019 to 26% in 2023.
+
+-   **Data considerations:** In Virginia public schools, [chronic absenteeism](https://www.doe.virginia.gov/programs-services/student-services/attendance-school-engagement){.external target="_blank"} is defined as missing ten percent or more of the academic year for any reason, including excused absences, unexcused absences, and suspensions. Based on a 180-day school year, that means approximately 18 days per year or 2 to 3 days per month.
+
+-   **How is this measured?**: The percent of chronically absent students is a measure based on the number of students determined to be chronically absent divided by the number of enrolled students. For more detailed information on this calculation, see the explanation from the [School Climate Reports page](https://www.doe.virginia.gov/data-policy-funding/data-reports/data-collection/special-education){.external target="_blank"}.
+
+#### Notable Trends
+
+-   Across Virginia public schools, chronic absenteeism increased following the COVID-19 pandemic and still remains higher than pre-pandemic numbers.
+
+-   ACPS has followed recent trends in the state, seeing a decrease in chronic absenteeism from 18% in 2022-2023 to 12% in 2024-2025 – a 33% reduction.
+
+-   In CSS, over 1 in 5 students (21%) were identified as chronically absent in the 2024-25 school year – higher than the state average by 6%.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-absentee
+#| fig-cap: "Percent of students identified chronically absent for the 2015-16 through 2024-25 school years at ACPS, CCS and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/absenteeism.csv") %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         div_name = case_when(str_detect(div_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(div_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(div_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$percent <- df$percent_chronically_absent
+df$label <- df$div_name 
+df$count_label <- prettyNum(df$number_of_chronically_absent_students, big.mark = ",")
+
+title <- "Percent of Students Identified Chronically Absent"
+ytext <- "Percent of Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education, School Climate Reports"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-absentee-img
+#| fig-cap: "Percent of students identified chronically absent for the 2015-16 through 2024-25 school years at ACPS, CCS and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-8-percent-of-students-iden.png")
+```
+:::
+
+### On-Time Graduation Rates
+
+On-time graduation is an important indicator of whether localities are preparing most students for college or career readiness, as a high school diploma is a standard requirement for many jobs and for accessing higher education. On-time graduation measures the percentage of public school students that graduated within four years of entering high school.
+
+-   **Data considerations:** This rate is derived from Virginia’s longitudinal student data system linking the records of students who entered 9th grade for the first time in a given year (beginning in 2004) with their records four years later to determine their graduation or completion status. The measure accounts for student mobility, retention, and promotion patterns and provides a complete description of completion outcomes for each cohort attending public schools. Students who earn a GED or a certificate of completion are not counted as dropouts or as graduates when calculating the on-time graduation rate.
+
+-   **How is this measured?:** On-time graduation is defined as students who earn a Virginia Board of Education-approved diploma among students who entered 9th grade for the first time together and were scheduled to graduate four years later; the percent represents students in a cohort who graduated on time over all students in that cohort, (multiplied by 100). This measure recognizes that some students with disabilities and limited English proficiency are allowed more than the standard four years to earn a diploma and counts those students as “on-time” graduates. [See VDOE for more](https://www.doe.virginia.gov/home/showpublisheddocument/19836/638042970406400000){.external target="_blank"}.
+
+#### Notable Trends
+
+-   On-time graduation rates have generally increased in both divisions and in the state overall since 2010, with ACPS remaining higher than the state average.
+
+-   In CCS, the rate dipped in 2013 before increasing to near ACPS between 2018-2023, at 93-94%. Recent years have seen a drop below state averages, falling to 87% in 2025.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-grad-rates
+#| fig-cap: "Percent of student cohort graduating in four years for 2010-2025 at ACPS, CCS and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/graduation_rates.csv")
+
+df$year <- df$cohort_year
+df$percent <- df$graduation_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$total_graduates, big.mark = ",")
+
+title <- "Percent of Student Cohort Graduating in Four Years"
+ytext <- "Percent of Student Cohort"
+xtext <- "Graduation Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Education, Cohort Graduation Build-A-Table"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-grad-rates-img
+#| fig-cap: "Percent of student cohort graduating in four years for 2010-2025 at ACPS, CCS and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-9-percent-of-student-cohor.png")
+```
+:::
+
+### Post-Secondary Enrollment
+
+It is increasingly common for jobs to require post-secondary education or postsecondary training or certification, particularly among jobs that support economic security. The rate of post-secondary enrollment measures the percent of graduating high school seniors who enter a higher education institution (e.g., college, university or community college) within 16 months after graduating from high school.
+
+-   **Data considerations:** This metric tracks each graduating cohort’s enrollment in a two- or four-year college or university anywhere in the United States. It is an accurate and complete reflection of education enrollment immediately following high school, but it does not include information on students who begin college more than 16 months after graduation.
+
+-   **How is this measured?:** The VDOE uses data from the [National Student Clearinghouse](http://www.studentclearinghouse.org/){.external target="_blank"} to track college attendance nationwide among students graduating from Virginia’s public schools. This metric represents the number of students in a division’s graduating cohort who enroll in any institution of higher education within 16 months of graduating as a percent of the number of students in the graduating cohort.
+
+#### Notable Trends
+
+-   The percentage of graduates enrolling in any post-secondary Institute of Higher Education (IHE) is consistently higher among Albemarle County Public School (ACPS) graduates than Charlottesville City Schools (CCS) or Virginia graduates overall.
+
+-   In ACPS, the percentage has fallen from 80% in 2015 to 72% in 2023. In CCS, the percentage has been relatively steady over the past decade, rising to 77% in 2013 with values between 64%-70% in other years.
+
+-   The percentage of graduates enrolling in a four-year institution is consistently higher in ACPS graduates than CCS or Virginia graduates. The percentage has fluctuated in both divisions from 2010 to 2023, with the most recent years showing 54% in ACPS and 43% in CCS, compared to 43% statewide.
+
+::: {.content-visible when-format="html"}
+```{r}
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/postsecondary_education.csv") %>% 
+  mutate(enrolled4yr = enrolled4pub + enrolled4priv,
+         percent4yr = round(enrolled4yr/cohortsize *100, 0))
+
+df$percent <- df$percentany
+df$label <- df$locality
+df$count_label <- prettyNum(df$enrolledany, big.mark = ",")
+
+title <- "Percent of Graduating Students Enrolled in a Post-Secondary Institution"
+ytext <- "Percent of Graduating Students"
+xtext <- "Graduation Year"
+xlabels <- JS("function() { return this.value; }")
+
+```
+
+```{r}
+#| label: fig-postsecondary
+#| fig-cap: "Percent of graduating students enrolled in a post-secondary institution for 2010-2025 at ACPS, CCS and Virginia public schools."
+
+df <- df %>% filter(year >= 2010)
+
+df_any <- df %>% 
+  mutate(label = case_when(locality =="Albemarle" ~ "ACPS: Any College",
+                           locality == "Charlottesville" ~ "CCS: Any College",
+                           .default = "VA Public Schools: Any College"))
+
+df_4yr <- df %>% 
+  mutate(label = case_when(locality =="Albemarle" ~ "ACPS: 4-yr College",
+                           locality == "Charlottesville" ~ "CCS: 4-yr College",
+                           .default = "VA Public Schools: 4-yr College"))
+
+series_percent_chart <- df_any %>% 
+  mutate(percent = round(percent,0)) %>% 
+  hchart("line", hcaes(x = year, y = percent, group = label), dashStyle = "solid") %>% 
+  hc_legend(align = "center", verticalAlign = "top", symbolWidth= 40) %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           # labels = list(allowOverlap = TRUE, step = 1, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 100,
+           title = list(text = ytext),
+           labels = list(format = '{text}%')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}%', enabled = TRUE)),
+                 line = list(marker = list(enabled = TRUE, symbol = list("circle")))) %>%
+  hc_tooltip(formatter = JS("function(){
+  return '<b>' + this.key + '</b></br>' + this.series.name + ': <b>' + this.y + '%</b></br>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  # hc_subtitle(text = '2018-2023',
+  #             align = "left",
+  #             style = list(fontSize = '1.4em')) %>%
+  hc_caption(text = "Data Source: Virginia Department of Education, Public Postsecondary Education Reports",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_add_series(data =  df_4yr, type = "line", mapping = hcaes(x = year, y = percent4yr, group = label), dashStyle = "dash", marker = list(symbol = "diamond")) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_percent_chart
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-postsecondary-img
+#| fig-cap: "Percent of graduating students enrolled in a post-secondary institution for 2010-2025 at ACPS, CCS and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-10-percent-of-graduating-st.png")
+```
+:::
+
+### High School Degree Attainment
+
+Earning a high school diploma is a minimum requirement for many jobs and to pursue higher education, thus it can have wide-ranging health, social, and economic impacts. The rate of education attainment in a community not only reflects benefits to individuals but is also related to community economic and population health.
+
+-   **Data considerations:** This metric is derived from the U.S. Census Bureau’s American Community Survey (ACS) 5-year estimates, a continuous survey given to a sample of addresses each month. The year listed for ACS measures is the last year of the 5-year period, i.e. “2024” represents the “2020-2024” 5-year period. As a survey, rather than a census, the ACS estimates have a degree of uncertainty, or sampling error, associated with them. Importantly, this metric does not capture the performance of schools in a given city but rather on the highest level of education achieved by adults who reside in that city, regardless of where they attended school.
+
+-   **How is this measured?:** The measure is the count of residents who are 25 or over who have received at least a H.S. diploma or equivalent (including GEDs) over the count of all residents aged 25 or over in the relevant city, county, or state (multiplied by 100).
+
+#### Notable Trends
+
+-   In Albemarle County, the percentage of residents with a H.S. diploma or more has been high and steady, remaining between 90-94% from 2010-2024.
+
+-   Among Charlottesville City residents there has been significant growth, with a H.S. diploma attainment rate of 85% in 2010 and a rate of 94% in 2024, essentially matching the rate in Albemarle County. From 2013 onward, the H.S. diploma attainment rate in both localities has exceeded that of the state as a whole.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-hsdegree
+#| fig-cap: "Percent of residents age 25 and older with a High School degree or equivalent for 2010-2024 in Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/hsdegree_attainment.csv") %>% 
+  mutate(count = round((pcthshigherE/100)*totpop25E, 0))
+
+df$percent <- df$pcthshigherE
+df$label <- df$NAME 
+df$count_label <- prettyNum(df$count, big.mark = ",")
+
+title <- "Percent of Residents Age 25 and Older with a High School Degree or Equivalent"
+ytext <- "Percent of Residents"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: U.S. Census Bureau, American Community Survey 5-year estimates"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-hsdegree-img
+#| fig-cap: "Percent of residents age 25 and older with a High School degree or equivalent for 2010-2024 in Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-11-percent-of-residents-age.png")
+```
+:::
+
+## Economic and Family Stability
+
+### Income for Families with Children
+
+The income available to a family is a primary measure of economic security of children and families. Median income for families with children measures the combined income for a family with children under 18 living in the home. Low household income can mean that a family is unable to afford basic necessities. According to [United for ALICE](https://www.unitedforalice.org){.external target="_blank"} the amount an average family needs to meet basic needs in 2023 was \$75,124 in Albemarle and \$68,703 in Charlottesville. Adjusting for inflation allows for the comparison of income given the increase in prices over time.
+
+-   **Data considerations:** This metric is derived from the U.S. Census Bureau’s American Community Survey (ACS) 5-year estimates, a continuous survey given to a sample of addresses each month. The year listed for ACS measures is the last year of the 5-year period, i.e. “2024” represents the “2020-2024” 5-year period. As a survey, rather than a census, the ACS estimates have a degree of uncertainty, or sampling error, associated with them.
+
+-   **How is this measured?:** Median family income represents the midpoint of all family incomes, meaning half of families with children earn more and half earn less than that amount. The median is generally considered a more representative measure of typical income compared to the average, as it's not affected by extreme outliers (very high or low incomes).The inflation-adjusted version uses the Consumer Price Index with 2014 as the base year.
+
+#### Notable Trends
+
+-   Adjusting for inflation shows that even as raw income has increased since 2014, its value has not kept up with the rising cost of living. In 2024, the median income for Albemarle families with children was near \$140k/year – the same as earning \$105k in 2014. In Charlottesville, the median income was \$113k in 2024 — \$85k in 2014 dollars.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/median_income_w_children.csv")
+
+df$number <- df$medinc_w_children
+df$label <- df$NAME 
+df$count_label <- prettyNum(df$medinc_w_children, big.mark = ",")
+
+title <- "Median Income for Families with Children under 18"
+ytext <- "Median Family Income"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+
+```
+
+```{r}
+#| label: fig-family-income
+#| fig-cap: "Median income for families with children under 18, shown as raw income and adjusted for inflation, 2014-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+df <- df %>% filter(year >= 2010) %>% 
+  mutate(adj_medinc_w_children = round(adj_medinc_w_children, 0))
+
+df_raw_inc <- df %>% 
+  mutate(label = case_when(NAME =="Albemarle County" ~ "Albemarle: Raw Income",
+                           NAME =="Charlottesville City" ~ "Charlottesville: Raw Income",
+                           .default = "Virginia: Raw Income"),
+         count_label = prettyNum(medinc_w_children, big.mark = ","))
+
+df_adj_inc <- df %>% 
+  mutate(label = case_when(NAME =="Albemarle County" ~ "Albemarle: Inflation-Adjusted",
+                           NAME =="Charlottesville City" ~ "Charlottesville: Inflation-Adjusted",
+                           .default = "Virginia: Inflation-Adjusted"),
+         count_label = prettyNum(adj_medinc_w_children, big.mark = ","))
+
+series_inc_chart <- df_raw_inc %>% 
+  arrange(year) %>%
+  hchart("line", hcaes(x = year, y = number, group = label), dashStyle = "solid") %>% 
+  hc_legend(align = "center", verticalAlign = "top", symbolWidth= 40) %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(title = list(text = ytext),
+           labels = list(format = '${text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '${y: ,f}', enabled = TRUE)),
+                 line = list(marker = list(enabled = TRUE, symbol = list("circle")))) %>%
+  hc_tooltip(formatter = JS("function(){
+  return '<b>' + this.key + '</b></br>' + this.series.name + ': <b>$' + this.point.count_label + '</b></br>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  # hc_subtitle(text = '2018-2023',
+  #             align = "left",
+  #             style = list(fontSize = '1.4em')) %>%
+  hc_caption(text = "Data Source: U.S. Census Bureau, American Community Survey 5-year estimates; U.S. Bureau of Labor Statistics",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>% 
+  hc_add_series(data =  df_adj_inc, type = "line", mapping = hcaes(x = year, y = adj_medinc_w_children, group = label), dashStyle = "dash", marker = list(symbol = "diamond")) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_inc_chart
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-family-income-img
+#| fig-cap: "Median income for families with children under 18, shown as raw income and adjusted for inflation, 2014-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-12-median-income-for-famili.png")
+```
+:::
+
+### Youth Labor Force Participation and Unemployment
+
+Labor force participation among young people and youth unemployment can shed light on both the health of the economy and the well-being of young people. High unemployment rates for youth may suggest an unavailability of jobs for youth or a mismatch between the skills that young people possess and the skills employers are seeking.
+
+-   **Data considerations:** This metric is derived from the U.S. Census Bureau’s American Community Survey (ACS) 5-year estimates, a continuous survey given to a sample of addresses each month. The year listed for ACS measures is the last year of the 5-year period, i.e. “2024” represents the “2020-2024” 5-year period. As a survey, rather than a census, the ACS estimates have a degree of uncertainty, or sampling error, associated with them. Labor force participation and unemployment do not include discouraged workers who have searched for a job in the last year but have given up.
+
+-   **How is this measured?:** The youth labor force participation rate is the number of 16-19 year olds who are employed or are seeking employment as a percentage of the number of residents aged 16-19. The youth unemployment rate is the number of 16-19 year olds who have reported that they do not have a job but are ready to work and have been seeking employment within the last 4 weeks as a percentage of the number of residents aged 16-19 in the labor force.
+
+#### Notable Trends
+
+-   Youth participation in the labor force in both Charlottesville and Albemarle is below that of the state overall. In recent years, labor force participation of Charlottesville youth has grown relative to that of young people in Albemarle. In 2024, 34% of Charlottesville youth were in the labor force compared to 28% of Albemarle youth.
+
+-   From 2016 to 2019, the youth unemployment rate in Charlottesville jumped, peaking at 23%, while the youth unemployment rate in Albemarle fell, hovering around 8%. In recent years the youth unemployment rate has declined in Charlottesville and remained relatively steady in Albemarle.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-youth-employ
+#| fig-cap: "Percent of youth (16-19) participating in the labor force, 2010-2024,  for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/youth_employment_status.csv")
+
+df$percent <- df$per_laborforce_16_19yr
+df$label <- df$NAME 
+df$count_label <- prettyNum(df$laborforce_16_19yr, big.mark = ",")
+
+title <- "Percent of Youth (16-19) Participating in the Labor Force"
+ytext <- "Percent of Youth (16-19)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: U.S. Census Bureau, American Community Survey 5-year estimates"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-youth-employ-img
+#| fig-cap: "Percent of youth (16-19) participating in the labor force, 2010-2024,  for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-13-percent-of-youth-16-19-p.png")
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-youth-unemploy
+#| fig-cap: "Percent of youth (16-19) in the labor force experiencing unemployment, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+
+df$percent <- df$per_unemployed_16_19yr
+df$label <- df$NAME 
+df$count_label <- prettyNum(df$unemployed_16_19yr, big.mark = ",")
+
+title <- "Percent of Youth (16-19) in the Labor Force Experiencing Unemployment"
+ytext <- "Percent of Youth (16-19) in the Labor Force"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: U.S. Census Bureau, American Community Survey 5-year estimates"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-youth-unemploy-img
+#| fig-cap: "Percent of youth (16-19) in the labor force experiencing unemployment, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-14-percent-of-youth-16-19-i.png")
+```
+:::
+
+### Children Living below Poverty Threshold
+
+When children grow up in poverty, they are more likely to have inadequate nutrition, limited access to health care services, unstable housing, lower quality of schools, and exposure to environmental toxins, all of which have short- and long-term physical and mental impacts.
+
+-   **Data considerations:** According to the Census, Small Area Income and Poverty Estimates (SAIPE) “are not direct counts from enumerations or administrative records, nor direct estimates from sample surveys. Instead, for counties and states, we model income and poverty estimates by combining survey data with population estimates and administrative records.” As such, these estimates have a degree of uncertainty associated with them.
+
+-   **How is this measured?:** This metric is measured as a percentage of families with incomes below the yearly poverty level out of all families. In 2024, the federal poverty level for a family of four was \$31,200.
+
+#### Notable Trends
+
+-   In Charlottesville in 2024, the percent of children in poverty was the lowest it has been in the last decade, at 15%, but still remained higher than in Virginia overall; the child poverty rate in Albemarle is consistently lower than that in the state, and has remained near its lowest rate in recent years, at 7% in 2024.
+
+-   Although the percentage in the county is lower, due to the difference in population between the City of Charlottesville and Albemarle County, it represents a higher number of children. In 2024, the estimated count in Charlottesville was 1,103 compared to 1,576 in Albemarle.
+
+-   In 2020, Charlottesville, Albemarle, and Virginia experienced low rates of child poverty, as the stimulus payments and child tax credit expansion were in place to provide relief in the midst of the COVID-19 Pandemic. [These policies are widely credited with keeping 3.7 million children out of poverty nationwide](https://www.cbpp.org/research/federal-tax/stimulus-payments-child-tax-credit-expansion-were-critical-parts-of-successful){.external target="_blank"}.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-child-pov
+#| fig-cap: "Percent of children living below the poverty threshold, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/child_poverty.csv") %>% 
+  mutate(locality = case_when(county_fips == "003" ~ "Albemarle",
+                              county_fips == "540" ~ "Charlottesville",
+                              county_fips == "000" ~ "Virginia"))
+
+df$percent <- df$pct_child_pov
+df$label <- df$locality 
+df$count_label <- prettyNum(df$num_child_pov, big.mark = ",")
+
+title <- "Percent of Children Living below the Poverty Threshold"
+ytext <- "Percent of Children"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: U.S. Census Bureau, Small Area Income and Poverty Estimates"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-child-pov-img
+#| fig-cap: "Percent of children living below the poverty threshold, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-15-percent-of-children-livi.png")
+```
+:::
+
+### Students Identified as Economically Disadvantaged
+
+Students in low-income households face additional challenges that can hinder their learning. Students are identified as economically disadvantaged if they meet one or more of the following conditions: eligible for free or reduced meals (family income is within 130% or 185% of federal poverty threshold), are eligible for TANF, Medicaid and/or Head Start, or identified as from a migrant family, experiencing homelessness, or in foster care. This measure is an indicator of low-income families. In addition, education funding is influenced by the presence of economically disadvantaged students [via the At-Risk Add-On](https://thecommonwealthinstitute.org/research/weighing-support-for-virginias-students/){.external target="_blank"}.
+
+-   **Data considerations:** This metric can be used to provide a picture of the current composition of students from low-income families to the extent economic need has been revealed to and verified by the schools. Historically, eligibility for free or reduced lunch has been one of the most frequent indicators of economic disadvantage; the National School Lunch Program has been a key policy to reduce hunger for children from economically insecure families. The USDA Community Eligibility Provision (CEP) was created in 2010 to allow high-poverty schools an opportunity to apply to offer all students at a school free- or reduced-price-meals. [Charlottesville City Schools have been participating in CEP since 2018, and Albemarle County Public Schools began participating in 2022](https://www.doe.virginia.gov/programs-services/school-operations-support-services/school-nutrition/program-statistics-reports){.external target="_blank"}.
+
+-   **How is this measured?:** This measures the count of students identified as economically disadvantaged as a percentage of all students in the school division.
+
+#### Notable Trends
+
+-   The percentage of economically disadvantaged students has been considerably higher in Charlottesville City Schools throughout this period, peaking at 63% in 2023-24 and falling to 42% in the 2025-26 school year.
+
+-   In Albemarle County Public Schools, the percentage has ranged from 24-32% over the period, lowering slightly to 27% in the 2025-26 school year.
+
+-   Although the percentage in the county is lower, due to the difference in population between the City of Charlottesville and Albemarle County, it represents a higher number of children. In the 2025-26 school year, the count in Charlottesville was 1,823 compared to 3,778 in Albemarle.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-econ-disadv
+#| fig-cap: "Percent of students identified as economically disadvantaged for the 2009-10 through 2025-26 school years in ACPS, CCS, and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/economically_disadvantaged_students.csv") %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$percent <- df$percent_disadvantaged
+df$label <- df$division_name
+df$count_label <- prettyNum(df$economically_disadvantaged_students, big.mark = ",") 
+
+title <- "Percent of Students Identified as Economically Disadvantaged"
+ytext <- "Percent of Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-econ-disadv-img
+#| fig-cap: "Percent of students identified as economically disadvantaged for the 2009-10 through 2025-26 school years in ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-16-percent-of-students-iden.png")
+```
+:::
+
+### Children in Two-Parent Households
+
+Research suggests children living in two-parent households, on average, are more advantaged than single-parent households. Married parent households are typically better off financially and family structure can influence children’s socioemotional development and [academic achievement](https://onlinelibrary.wiley.com/doi/full/10.1111/j.1741-3737.2011.00825.x){.external target="_blank"}. Lower rates of two-parent households can be indicators of higher rates of divorce/separation; they can be further impacted by incarceration trends as the carceral systems remove parents from the community.
+
+-   **Data considerations:** This metric is derived from the U.S. Census Bureau’s American Community Survey (ACS) 5-year estimates, a continuous survey given to a sample of addresses each month. The year listed for ACS measures is the last year of the 5-year period, i.e. “2024” represents the “2020-2024” 5-year period. As a survey, rather than a census, the ACS estimates have a degree of uncertainty, or sampling error, associated with them. In addition, this measure does not include children living in households with two adults who are not both parents of the child as children living with two parents.
+
+-   **How is this measured?:** The percent of children living with two parents is derived by totaling children ages 0-17 where child/ren are living with both parents and dividing over the total number of children under 18 years in families and subfamilies (multiplied by 100).
+
+#### Notable Trends
+
+-   Albemarle consistently has a larger share of two-parent households relative to Charlottesville. County trends show a slight decline in recent years, from 79% in 2014 to 73% in 2024.
+
+-   In Charlottesville, the percent of two-parent households fell to a low of 58% in 2014, before gradually rising back to 63% in 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-two-parent
+#| fig-cap: "Percent of children living in a two-parent household, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/children_twoparent_hh.csv")
+
+df$percent <- df$per_child_twoparent_hh
+df$label <- df$NAME
+df$count_label <- prettyNum(df$total_children, big.mark = ",") 
+
+title <- "Percent of Children Living in a Two-Parent Household"
+ytext <- "Percent of Children"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: U.S. Census Bureau, American Community Survey 5-year estimates"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-two-parent-img
+#| fig-cap: "Percent of children living in a two-parent household, 2010-2024, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-17-percent-of-children-livi.png")
+```
+:::
+
+### Assessments and Investigations by Child Protective Services
+
+Reports of potential child neglect or abuse are one indicator of child wellbeing and may signal that more or fewer children are being identified as potentially at risk or that there is greater awareness of the signs of abuse and neglect within the community. Childhood maltreatment, in addition to having an immediate and negative impact on children, has been linked to later [physical, psychological, and behavioral consequences](https://www.childwelfare.gov/pubpdfs/long_term_consequences.pdf){.external target="_blank"}.
+
+-   **Data considerations:** Child abuse and neglect referrals are made to Child Protective Services who make a determination of whether the referral meets the threshold and criteria for further action and, if so, whether to pursue a family assessment or an investigation. As such, this measure is not reporting the substantiated occurrence of neglect or abuse, but the valid reporting of potential neglect or abuse. These data, then, capture only cases that have been reported to CPS and screened in by social services. Reports to CPS require someone to observe or evaluate behavior as meeting a threshold of neglect or abuse. The majority of accepted referrals to CPS are made for “physical neglect,” an occurrence open to considerable interpretation as [research has demonstrated the deep overlap between the conditions of poverty and of child neglect](https://www.childwelfare.gov/pubPDFs/bulletins-povertyneglect.pdf){.external target="_blank"}.
+
+-   **How is this measured?:** This metric captures the number of referrals to Child Protective Services accepted for assessment or investigation in Virginia, regardless of outcome, over the number of children aged 0-17 in the area and multiplied by 1,000.
+
+#### Notable Trends
+
+-   The rate of child neglect and abuse assessments and investigations has fluctuated in both Charlottesville and Albemarle but is consistently higher in Charlottesville. Poverty has been consistently linked to judgments of neglect used in child welfare, and the rate of poverty is considerably lower in Albemarle than in Charlottesville.
+
+-   In Charlottesville, the rate has generally declined from 47 per 1,000 children in 2017 to 25 per 1,000 in 2024.
+
+-   The rate in Albemarle has seen a rise in this period, from a low of 12 per 1,000 in 2011 up to 20 per 1,000 in 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/child_welfare_cases.csv")
+
+df$rate <- df$cps_rate
+df$label <- df$locality 
+df$count_label <- prettyNum(df$cases_accepted, big.mark = ",")
+
+title <- "Referrals to Child Protective Services Accepted for Assessment or Investigation"
+ytext <- "Rate per 1,000 Children"
+xtext <- "Fiscal Year (July 1st - June 30th)"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Social Services"
+
+```
+
+```{r}
+#| label: fig-series-rate
+#| fig-cap: "Referrals to child protective services accepted for assessment or investigation for fiscal years, rate per 1,000 children for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+df <- df %>% filter(year >= 2010)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 50,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br><b>' + this.key + '</b></br>' + 'Rate per 1,000: <b>' + this.y + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = source_text,
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-series-rate-img
+#| fig-cap: "Referrals to child protective services accepted for assessment or investigation for fiscal years, rate per 1,000 children for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-18-referrals-to-child-prote.png")
+```
+:::
+
+### Children in Foster Care
+
+Children in foster care are among our most vulnerable children. The rate of family separation is both an indicator of child welfare and of the unmet need or underinvestment in policies and resources to support families in the community. Neglect, often a proxy for the effects of poverty, is [one of the most common reasons for a child’s removal from the home nationally](https://www.childrensdefense.org/state-of-americas-children/soac-2021-child-welfare/){.external target="_blank"}, including “failure to provide adequate nutrition, supervision, health care, clothing, or housing.”
+
+-   **Data considerations:** While this data counts all children in foster care at a point in time, a child’s presence in foster care occurs only after multiple decisions made by people in a position of authority. These data, then, reflect a series of actions, evaluations, and decisions, many of which are subject to interpretation. Research has long shown that minoritized populations, especially Black children, are overrepresented in foster care, and legal and social researchers have [repeatedly](https://www.hachettebookgroup.com/titles/dorothy-roberts/shattered-bonds/9780465070596/){.external target="_blank"} [documented](https://cssp.org/wp-content/uploads/2018/11/CSSP-Entangled-Roots.pdf){.external target="_blank"} the ways child welfare systems are [entangled](https://www.childrensrights.org/wp-content/uploads/2023/04/CR-Racism-at-the-Front-End-of-Child-Welfare-2023-Fact-Sheet.pdf){.external target="_blank"} with [race](https://www.hachettebookgroup.com/titles/dorothy-roberts/torn-apart/9781541675445/){.external target="_blank"}.
+
+-   **How is this measured?:** This metric reports the number of children in foster care on October 1 of each year divided by the number of children aged 0-17 in the area and multiplied by 1,000.
+
+#### Notable Trends
+
+-   The rate of children in foster care has been consistently higher in Charlottesville than in Albemarle. The rate in Albemarle has remained relatively steady, at around 4-5 children per 1,000, during this period. The rate in Charlottesville has fallen substantially over time, from rates above 20 children per 1,000 in 2010 to 10 or fewer children per 1,000 in 2023 and 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-foster-care
+#| fig-cap: "Children in foster care, rate per 1,000 children in Albemarle County, Charlottesville City, and Virginia for 2010-2024, measured in October of each year."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/foster_care.csv") %>% 
+  filter(year >= 2010 & year < 2025)
+
+df$rate <- df$fc_rate
+df$label <- df$locality 
+df$count_label <- prettyNum(df$fc_count, big.mark = ",")
+
+title <- "Rate of Children in Foster Care"
+ytext <- "Rate per 1,000 Children"
+xtext <- "Year (Measured on October 1st)"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Social Services"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-foster-care-img
+#| fig-cap: "Children in foster care, rate per 1,000 children in Albemarle County, Charlottesville City, and Virginia for 2010-2024, measured in October of each year."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-19-rate-of-children-in-fost.png")
+```
+:::
+
+### Students Experiencing Homelessness
+
+Children need safe and stable housing to thrive. The absence of secure housing worsens child educational, health, and developmental outcomes. The federal government, through the McKinney-Vento Act, provides protections and resources to support equal access to free, appropriate education for children experiencing homelessness. To administer the program, state and local education agencies capture information on “children and youth who lack a fixed, regular, and adequate nighttime residence, including those who are sharing the housing of others due to loss of housing, economic hardship, or a similar reason; staying in motels, trailer parks, or camp grounds due to the lack of an adequate alternative; staying in shelters or transitional housing; or sleeping in cars, parks, abandoned buildings, substandard housing, or similar settings.”
+
+-   **Data considerations:** The data on student homelessness uses a more comprehensive definition of homelessness than that used by the Department of Housing and Urban Development, including children living doubled-up. But it only counts children experiencing homelessness among children in kindergarten through grade 12 and preschoolers enrolled in a preschool program that receives a homeless education grant from the Education Department. Children from birth to age 5, not subject to compulsory education requirements, are not fully captured in these data.
+
+-   **How is this measured?:** Schools identify children experiencing homelessness through multiple means, including enrollment processes where families self-identify and staff trained to notice the warning signs of student homelessness and make referrals to a school’s homelessness liaison.
+
+#### Notable Trends
+
+-   The rate of students experiencing homelessness in CCS and ACPS has generally been higher than the state average, except for the 2020-21 school year. The data for 2020 and 2021 may have been impacted by the COVID-19 pandemic. The remote and hybrid learning at the onset of the pandemic reduced the ability for educational staff to recognize housing instability among their students.
+
+-   In CCS the rate of students experiencing homelessness has jumped to 28 per 1,000 students, higher than pre-pandemic levels.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/mckinney_vento_rates.csv")  %>% 
+  mutate(year = as.numeric(str_sub(school_year,-4,-1)),
+         division = case_when(str_detect(division, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division, "Virginia") ~ "Virginia Public Schools"))
+
+df$rate <- df$mv_rate
+df$label <- df$division 
+df$count_label <- prettyNum(df$mv_count, big.mark = ",")
+
+title <- "McKinney-Vento: Students Experiencing Homelessness Enrolled in Public Schools"
+ytext <- "Rate per 1,000 Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+
+```
+
+```{r}
+#| label: fig-mckinney-vento
+#| fig-cap: "Students experiencing homelessness enrolled in public schools, rate per 1,000 students, reported through the McKinney-Vento Act for the 2010-11 through 2022-23 school years at ACPS, CCS, and Virginia public schools."
+
+
+df <- df %>% filter(year >= 2010)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 50,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br><b>' + this.key + '</b></br>' + 'Rate per 1,000: <b>' + this.y + '</b>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = "Data Source: U.S. Department of Education",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-mckinney-vento-img
+#| fig-cap: "Students experiencing homelessness enrolled in public schools, rate per 1,000 students, reported through the McKinney-Vento Act for the 2010-11 through 2022-23 school years at ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-20-mckinney-vento-students.png")
+```
+:::
+
+## Health
+
+### Prenatal Care
+
+Prenatal care is the health care that individuals receive while pregnant, and is important to reduce the risk of pregnancy complications. Prenatal care typically includes physical exams, weight checks, urine and/or blood samples, ultrasounds, and discussions about the mother’s and fetus’s health. [Research shows that prenatal care dramatically reduces the negative effect of substances during pregnancy](https://www.acog.org/clinical/clinical-guidance/committee-opinion/articles/2011/01/substance-abuse-reporting-and-pregnancy-the-role-of-the-obstetrician-gynecologist#:~:text=Studies%20indicate%20that%20prenatal%20care,birth%20weight%20and%20prematurity%209.){.external target="_blank"}, including decreasing the risks of low birth-weight and premature birth. Reducing barriers to prenatal care has been a priority of the [Blue Ridge Health District’s MAPP2Health Community Assessment and Improvement Plan](https://www.vdh.virginia.gov/blue-ridge/mapp2health/){.external target="_blank"} since 2008.
+
+-   **Data considerations:** These data are derived from health registration data. Registration data represent an authoritative list of births known to the Department of Health. Registration data is closer to census data in that it attempts to capture all relevant events to accurately reflect the population. Error may be introduced if relevant events are not captured.
+
+-   **How is this measured?:** This measure is the percent of pregnant people residing in a locality seeing a health care provider during the first thirteen weeks of pregnancy (first trimester).
+
+#### Notable Trends
+
+-   In both Albemarle and Charlottesville, the percent of pregnancies receiving prenatal care in the first trimester is higher than in Virginia overall. 
+
+-   Since 2010, the percentage receiving prenatal care beginning in the first trimester has grown marginally in Albemarle County and Charlottesville, from 78% and 76% to 82% and 81% in 2023. 
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-prenatal
+#| fig-cap: "Percent of pregnant people receiving prenatal care beginning in the first trimester, 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/prenatal_care.csv") %>% 
+  rename(year = time_frame)
+
+df$percent <- df$percent_prenatal_care
+df$label <- df$location
+df$count_label <- "" 
+
+title <- "Percent Receiving Prenatal Care Beginning in the First Trimester"
+ytext <- "Percent of People Giving Birth"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Health via Voices for Virginia’s Children"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-prenatal-img
+#| fig-cap: "Percent of pregnant people receiving prenatal care beginning in the first trimester, 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-21-percent-receiving-prenat.png")
+```
+:::
+
+### Low Birth-Weight Babies
+
+Low birth-weight is an indicator of current infant and maternal health, as well as future health, as low birth-weight babies are at higher risk of dying early, and long-term health and development issues. Low birthweight is defined as less than 2,500 grams (about 5.5 lbs).
+
+-   **Data considerations:** These data are derived from health registration data. Registration data represent an authoritative list of births known to the Department of Health. Registration data is closer to census data in that it attempts to capture all relevant events to accurately reflect the population. Error may be introduced if relevant events are not captured.
+
+-   **How is this measured?:** This measure records the number of live births of babies weighing less than 2,500 grams as a percent of the total number of live births with residence in the area.
+
+#### Notable Trends
+
+-   The percent of low birth-weight babies born in Albemarle has held steady over this period hovering around 5-6%, slightly below the Virginia rate of 8%.
+
+-   In Charlottesville, the percentage of low birth-weight babies since 2010 has slightly fluctuated, from a low of 4% to a recent high of 11%.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-low-birthweight
+#| fig-cap: "Percent of babies born weighing under 2,500 grams (5.5 lbs), 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/low_birthweight.csv") %>% 
+  rename(year = time_frame)
+
+df$percent <- df$percent_low_birthweight
+df$label <- df$location
+df$count_label <- "" 
+
+title <- "Percent Low Birth-Weight Babies"
+ytext <- "Percent of Babies"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Health via Voices for Virginia’s Children"
+
+<<fig-series-percent>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-low-birthweight-img
+#| fig-cap: "Percent of babies born weighing under 2,500 grams (5.5 lbs), 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-22-percent-low-birth-weight.png")
+```
+:::
+
+### Infant Mortality
+
+Infant mortality measures the rate of death among children under one year of age in the given year, some of whom may have been born in the previous year. The most common causes of infant mortality include birth defects, preterm birth and low birth weight, maternal complications of pregnancy, Sudden Infant Death Syndrome, and injuries.
+
+-   **Data considerations:** These data are derived from health registration data. Registration data represent an authoritative list of births known to the Department of Health. Registration data is closer to census data in that it attempts to capture all relevant events to accurately reflect the population. Error may be introduced if relevant events are not captured.
+
+-   **How is this measured?:** This measure is the number of infant deaths (children less than one year old) per 1,000 live births in each locality in the given year. The rate is calculated as a 3 year rolling average to better identify long-term trends.
+
+#### Notable Trends
+
+-   The infant mortality rate has risen in Albemarle since 2016, growing to a high for the period of around 6 infant deaths per 1,000 live births in 2022, the most recent year with an available 3 year average value.
+
+-   In Charlottesville, the infant mortality rate has fluctuated over the period, with a high average in 2016 of 7 infant deaths per 1,000 live births. In the most recent year with an available 3 year average, the rate was around 5 infant deaths per 1,000 live births.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/infant_mortality.csv") %>% 
+  rename(year = time_frame) %>% 
+  na.omit()
+
+df$rate <- df$rate_infant_mortality_3yravg
+df$label <- df$location 
+df$count_label <- ""
+
+title <- "Infant Mortality Rate"
+ytext <- "Rate per 1,000 births"
+xtext <- "Year (3 Year Rolling Average)"
+xlabels <- JS("function() { return this.value; }")
+# xlabels <- JS("function() { return this.value - 1 + '-' + this.value + 1; }")
+source_text <- "Data Source: Virginia Department of Health, Division of Disease Prevention"
+
+```
+```{r}
+#| label: fig-infant-mortality
+#| fig-cap: "Rate per 1,000 births of infants who died before their 1st birthday, 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+df <- df %>% filter(year >= 2010)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 50,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br><b>' + this.key + '</b></br>' + 'Rate per 1,000 births: <b>' + this.y + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = source_text,
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-infant-mortality-img
+#| fig-cap: "Rate per 1,000 births of infants who died before their 1st birthday, 2010-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-23-infant-mortality-rate.png")
+```
+:::
+
+### Teen Pregnancy
+
+According to the VDH, teen pregnancy has unique medical risks including lack of prenatal care, high blood pressure, premature birth, low birth weight, STDs, and postpartum depression. In addition, teen births are more likely to lead to poor outcomes for both teenage mothers and their children.
+
+-   **Data considerations:** These data are derived from health registration data. Registration data represent an authoritative list of births known to the Department of Health. Registration data is closer to census data in that it attempts to capture all relevant events to accurately reflect the population. Error may be introduced if relevant events are not captured.
+
+-   **How is this measured?:** The teenage pregnancy rate is the sum of live births, legal induced abortions, and natural fetal deaths per 1,000 women aged 15-19 years. The rate of teen pregnancy for ages 18-19 years is consistently higher than ages 15-17 years for both localities. 
+
+#### Notable Trends
+
+-   The teen pregnancy rate in Albemarle has remained relatively consistent over the period, between 6-8 per 1,000 women ages 15-19 years, falling below Virginia overall.
+
+-   In Charlottesville, teen pregnancy has fluctuated since 2010, with a high of 28 per 1,000 15-19 year old women in 2016 to around 16 per 1,000 in 2023, the most recent available year.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-teen-preg
+#| fig-cap: "Teen pregnancy rate per 1,000 young women ages 15–19, 2015-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/teen_pregnancy.csv")
+
+df$rate <- df$rate_teen_pregnancy_per_1000
+df$label <- df$report_area
+
+title <- "Teen Pregnancy Rate for Ages 15-19"
+ytext <- "Rate per 1,000 women ages 15-19"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Health, VDH - Maternal & Child Health"
+
+<<fig-series-rate>>
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-teen-preg-img
+#| fig-cap: "Teen pregnancy rate per 1,000 young women ages 15–19, 2015-2023, for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-24-teen-pregnancy-rate-for.png")
+```
+:::
+
+### Sexually Transmitted Infections in Youth
+
+Nationally, the rate of sexually transmitted infections has been on the rise. [Adolescents are uniquely at risk for STIs](https://www.guttmacher.org/gpr/2020/04/reducing-sti-cases-young-people-deserve-better-sexual-health-information-and-services){.external target="_blank"} as they are less likely than adults to access and utilize sexual health services and public policies regularly limit young people’s access to sexual health information.
+
+-   **Data considerations:** These data are derived from health registration data. Registration data represent an authoritative list of diagnoses known to the Virginia Department of Health. Registration data is closer to census data in that it attempts to capture all relevant events to accurately reflect the population. Error may be introduced if relevant events are not captured.
+
+-   **How is this measured?:** This measure is the combined incidence of syphilis, gonorrhea, chlamydia, and HIV per 1,000 residents aged 10-19. This incidence rate only counts cases first reported; for HIV, the incidence rate will count a new case in the first year it is diagnosed, but not in the following years, even though a patient still has the condition and is receiving treatment.
+
+#### Notable Trends
+
+-   The incidence rates of STIs among youth in Charlottesville have been consistently higher than the rate in Albemarle, though in recent years the rate in Charlottesville has fallen steeply and become aligned with the rate in the state overall. In 2024, the rate per 1,000 youths ages 10-19 was 11.
+
+-   The incidence rate in Albemarle has grown slightly, at 6 per 1,000 young people in 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-youth-sti
+#| fig-cap: "Sexually transmitted infections in youth, rate per 1,000 residents aged 10-19, from 2010-2024 for Albemarle County, Charlottesville City, and Virginia. This measure is the combined incidence of syphilis, gonorrhea, chlamydia, and HIV."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/youth_sti_rates.csv")
+
+df$rate <- df$annual_rate_per_1_000
+df$label <- df$location 
+df$count_label <- prettyNum(df$sti_hiv_case_count, big.mark = ",")
+
+title <- "Rate of Sexually Transmitted Infections in Youth"
+ytext <- "Rate per 1,000 Youth (10-19 yr)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Department of Health, Division of Disease Prevention"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-youth-sti-img
+#| fig-cap: "Sexually transmitted infections in youth, rate per 1,000 residents aged 10-19, from 2010-2024 for Albemarle County, Charlottesville City, and Virginia. This measure is the combined incidence of syphilis, gonorrhea, chlamydia, and HIV."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-25-rate-of-sexually-transmi.png")
+```
+:::
+
+## School and Community Disciplinary Actions
+
+### Student Behavior and Administrative Response
+
+These data capture the recorded student behaviors that endanger student safety and health as well as behaviors that require engagement with law enforcement and offer insight into the safety of school environments. For each metric, it is the rate of incidents per 1,000 students; this is not equivalent to the number of students reported for an offense as an individual student could be reported multiple times.
+
+-   **Data considerations:** These data are derived from school administrative data from the Virginia Department of Education (VDOE). They capture only incidents observed and reported by school authorities. That is, these records do not occur by default but require someone to observe or evaluate an action or behavior and make a judgment about whether the behavior should be referred to the administrative systems. Details on all behavior categories and other policies can be read on the [VDOE’s Student Behavior and Administrative Response Collection page](https://www.doe.virginia.gov/data-policy-funding/data-reports/data-collection/student-behavior-and-administrative-response-collection){.external target="_blank"}. The SBAR data reporting system replaced the previous Safe Schools Information Resource (SSIR) beginning the 2021-2022 school year.
+
+-   **How are these measured?:** For each measure, the number of relevant events from the SBAR Annual Report are summed and the total is divided by the number of students in the school division (and multiplied by 1,000).
+
+    -   BESO: Behaviors that Endanger Self or Others (BESO). These behaviors endanger the health, safety, or welfare of either the student or others in the school community. For ACPS and CCS, the most commonly documented BESO events were related to fighting and assault, threatening violence, and drug possession.
+
+    -   Persistently Dangerous (PD): Behaviors described in Virginia’s Unsafe School Choice Option Policy required by the federal Every Student Succeeds Act of 2015. These behaviors require reports to law enforcement. For ACPS and CCS, the number of PD events resulted in a very low rate of 0.2 or less per 1,000 students. These included possession of drugs with intent to sell and possession of a handgun.
+
+#### Notable Trends
+
+-   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-sbar-beso
+#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/student_behavior_events.csv")  %>% 
+  mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$rate <- df$beso_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$beso_count, big.mark = ",")
+
+title <- "Rate of BESO Incidents: Behaviors that Endanger Self or Others"
+ytext <- "Rate per 1,000 Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-sbar-beso-img
+#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-26-rate-of-beso-incidents-b.png")
+```
+:::
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-sbar-pd
+#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/student_behavior_events.csv")  %>% 
+  mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$rate <- df$pd_rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$pd_count, big.mark = ",")
+
+title <- "Rate of PD Incidents: Persistently Dangerous Behaviors"
+ytext <- "Rate per 1,000 Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+source_text <- "Data Source: Virginia Department of Education"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-sbar-pd-img
+#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-27-rate-of-pd-incidents-per.png")
+```
+:::
+
+### In-School Suspensions
+
+In-School suspensions (ISS) are a disciplinary exclusionary setting within the school building used for temporary removal of a student from their regularly scheduled classes. In-School suspensions can be a time for learning, catching up on missed work, problem-solving, getting academic support/tutoring, or meeting with counselors. However, any type of suspension, both in-school and out-of-school, that excludes students from their regular classes, have negative outcomes for students including distrust of the school environment, chronic absenteeism, lower academic achievement, and risk of dropping out.
+
+-   **Data considerations:** For Virginia public schools, an in-school suspension can be a half-day or longer. This metric presents a rate per 1,000 students based on the number of students who received an ISS. Some students may have received multiple in-school suspensions. Details on the behavior categories that can lead to an in-school suspension and other policies can be read on the [VDOE’s Student Behavior and Administrative Response Collection page](https://www.doe.virginia.gov/data-policy-funding/data-reports/data-collection/student-behavior-and-administrative-response-collection){.external target="_blank"}. The SBAR data reporting system replaced the previous Safe Schools Information Resource (SSIR) beginning the 2021-2022 school year.
+
+-   **How is this measured?:** The rate of students suspended is the count of students given an in-school suspension divided by the total students enrolled in a school division, multiplied by 1,000.
+
+#### Notable Trends
+
+-   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2023-24 school year, around 27 of every 1,000 students were reported by CCS as receiving an ISS, compared to 50 per 1,000 students reported by ACPS.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/in_school_suspensions.csv")   %>% 
+  mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$rate <- df$rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$individual_student_offenders, big.mark = ",")
+
+title <- "Rate of In-School Suspensions"
+ytext <- "Rate per 1,000 Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+
+```
+
+```{r}
+#| label: fig-in-school
+#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+
+df <- df %>% filter(year >= 2022)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           # labels = list(allowOverlap = TRUE, step = 1, minTickInterval = 1, allowDecimals = FALSE, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 150,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br>School Year: <b>' + this.point.school_year + '</b></br>' + 'Rate per 1,000: <b>' + this.y + '</b></br>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = "Data Source: Virginia Department of Education",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-in-school-img
+#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-28-rate-of-in-school-suspen.png")
+```
+:::
+
+### Out-of-School Suspensions
+
+Out-of-School suspensions (OSS) are an exclusionary disciplinary tool that temporarily removes students from their schools for a violation of school policies or rules. Being suspended from school is associated with multiple poor outcomes including lower academic achievement, being at risk for dropping out, and involvement in the criminal justice system.
+
+-   **Data considerations:** For Virginia public schools, an OSS can range from 1-10 days for a short-term suspension to 11 or more days for a long-term suspension. Depending on the length of the suspension and aggravating circumstances, out-of-school suspensions are assigned by school-based administrators, division-level administrators such as Superintendents, or by the School Board. In ACPS and CCS, the majority of out-of-school suspensions are determined at the school admin level. This metric presents a rate per 1,000 students based on the number of students who received an OSS. Some students may have received multiple out-of-school suspensions. Details on the behavior categories that can lead to an out-of-school suspension and other policies can be read on the [VDOE’s Student Behavior and Administrative Response Collection page](https://www.doe.virginia.gov/data-policy-funding/data-reports/data-collection/student-behavior-and-administrative-response-collection){.external target="_blank"}. The SBAR data reporting system replaced the previous Safe Schools Information Resource (SSIR) beginning the 2021-2022 school year.
+
+-   **How is this measured?:** The rate of students suspended is the count of students given an out-of-school suspension divided by the total students enrolled in a school division, multiplied by 1,000.
+
+#### Notable Trends
+
+-   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2023-24 school year, around 64 of every 1,000 students were reported by CCS as receiving an OSS, compared to 29 per 1,000 students by ACPS.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/out_of_school_suspensions.csv")  %>% 
+  mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
+         division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
+                                                        str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
+                                                        str_detect(division_name, "Virginia") ~ "Virginia Public Schools"))
+
+df$rate <- df$rate
+df$label <- df$division_name 
+df$count_label <- prettyNum(df$number_of_students, big.mark = ",")
+
+title <- "Rate of Out-of-School Suspensions"
+ytext <- "Rate per 1,000 Students"
+xtext <- "School Year"
+xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().slice(-2); }")
+
+```
+
+```{r}
+#| label: fig-out-school
+#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+
+df <- df %>% filter(year >= 2022)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           # labels = list(allowOverlap = TRUE, step = 1, minTickInterval = 1, allowDecimals = FALSE, style = list(fontSize = '1.2em')),
+           tickInterval = 1,
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 150,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br>School Year: <b>' + this.point.school_year + '</b></br>' + 'Rate per 1,000: <b>' + this.y + '</b></br>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = "Data Source: Virginia Department of Education",
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-out-school-img
+#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-29-rate-of-out-of-school-su.png")
+```
+:::
+
+### Children in Need of Services or Supervision
+
+This measure tracks the number of judgments of a child in need of supervision, a young person who is truant or has run away from home, and the number of judgments of a child in need of services, a young person whose behavior, conduct, or condition presents or results in a serious threat to himself or another person. A CHINS petition can be filed by parents, police, and school authorities and is adjudicated in Juvenile Court. According to Virginia Code[§ 16.1-278.4](https://law.lis.virginia.gov/vacode/title16.1/chapter11/section16.1-278.4/){.external target="_blank"} and[§ 16.1-278.5](https://law.lis.virginia.gov/vacode/title16.1/chapter11/section16.1-278.5/){.external target="_blank"}, a child who has been found in need of services or supervision may be subject to probation, transfer of custody, or rehabilitative treatment.
+
+-   **How is this measured?:** This metric counts the number of dispositions of children in need of services and truancy issued in a court jurisdiction divided by the number of residents aged 5-17 in the locality (multiplied by 1,000).
+
+#### Notable Trends
+
+-   The past rate has been higher in Charlottesville than in Albemarle, peaking at 15 per 1,000 youth in 2016, and falling to around 2 per 1,000 youth in 2023 and 2024.
+
+-   The rate in Albemarle saw a high around 5 in 2014 and has fallen to between 1 and 3 per 1,000 youth in 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-supervision
+#| fig-cap: "Youth in need of services or supervision, rate per 1,000 youth ages 5-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/jdr_services_supervision_rates.csv") %>% 
+  filter(year != 2025)
+
+df$rate <- df$rate_total
+df$label <- df$locality 
+df$count_label <- prettyNum(df$count_total, big.mark = ",")
+
+title <- "Rate of Youth in Need of Services or Supervision"
+ytext <- "Rate per 1,000 Youth (5-17)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Judicial System, Juvenile and Domestic Relations Court"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-supervision-img
+#| fig-cap: "Youth in need of services or supervision, rate per 1,000 youth ages 5-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-30-rate-of-youth-in-need-of.png")
+```
+:::
+
+### Juvenile Delinquency Judgments
+
+This measure tracks the number of judgments of delinquency in the Juvenile and Domestic Relations court. A delinquent judgment may be passed when someone under age 18 commits an act which would be a crime if committed by an adult (including felonies and misdemeanors) and a ruling of delinquency entails escalated involvement with the justice system. According to [Virginia Code § 16.1-278.8](https://law.lis.virginia.gov/vacode/title16.1/chapter11/section16.1-278.8/){.external target="_blank"}, juveniles found to be delinquent may be subject to multiple types of sanctions or services: commitment to juvenile justice, probation, substance abuse treatment, fines and restitution, loss of driver’s license, public service project, and others.
+
+-   **Data considerations:** These data do not include “status offenses”, behaviors that are not crimes but are prohibited because of a youth’s status as a minor.
+
+-   **How is this measured?:** This metric counts the number of juvenile delinquency felony and misdemeanor dispositions issued in a court jurisdiction divided by the number of residents aged 10-17 in the locality, multiplied by 1,000. The majority of delinquency judgments are misdemeanors, both statewide and in local jurisdictions.
+
+#### Notable Trends
+
+-   The rate of juvenile delinquency judgments has decreased steadily in both Charlottesville and Albemarle. In 2010, the rate in Charlottesville was 132 per 1,000 youth, but fell to 40 in 2024. In 2010, the rate in Albemarle was 51 per 1,000 youth, but fell to 18 in 2024.
+
+::: {.content-visible when-format="html"}
+```{r}
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/jdr_delinquency_rates.csv") %>% 
+  filter(year != 2025)
+
+df$rate <- df$rate_total
+df$label <- df$locality 
+df$count_label <- prettyNum(df$count_total, big.mark = ",")
+
+title <- "Rate of Juvenile Delinquency Judgments for Youth"
+ytext <- "Rate per 1,000 Youth (10-17)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia Judicial System, Juvenile and Domestic Relations Court"
+
+```
+
+```{r}
+#| label: fig-delinquent
+#| fig-cap: "Juvenile delinquency judgments for youth, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+df <- df %>% filter(year >= 2010)
+
+series_rate_chart <- df %>% 
+  mutate(rate = round(rate,1)) %>% 
+  arrange(year) %>% 
+  hchart("line", hcaes(x = year, y = rate, group = label)) %>% 
+  hc_legend(align = "center", verticalAlign = "top") %>%
+  hc_xAxis(title = list(text = xtext), 
+           labels = list(formatter = xlabels, style = list(fontSize = '1.2em')),
+           # labels = list(allowOverlap = TRUE, step = 1, minTickInterval = 1, allowDecimals = FALSE, style = list(fontSize = '1.2em')),
+           allowDecimals = FALSE) %>%
+  hc_yAxis(min = 0, max = 150,
+           title = list(text = ytext),
+           labels = list(format = '{text}')) %>%
+  hc_colors(locality_pal) %>%
+  hc_plotOptions(series = list(dataLabels = list(format = '{y: f}', enabled = TRUE)),
+                 line = list( marker = list(enabled = TRUE) )) %>%
+  hc_tooltip(formatter = JS("function(){
+  return this.series.name + '</br><b>' + this.key + '</b></br>' + 'Rate per 1,000: <b>' + this.y + '</b></br>' + 'Est. Number: <b>' + this.point.count_label + '</b>'
+  }")) %>%
+  hc_title(text = title,
+           align = 'left') %>%
+  hc_caption(text = source_text,
+             align = "right",
+             style = list(fontSize = '1em')) %>%
+  hc_add_theme(hc_theme_smpl()) %>%
+  hc_exporting(enabled=TRUE,
+               sourceWidth = 900,
+               sourceHeight = 600
+  )
+
+series_rate_chart
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-delinquent-img
+#| fig-cap: "Juvenile delinquency judgments for youth, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-31-rate-of-juvenile-delinqu.png")
+```
+:::
+
+### Arrests for Violent Crimes
+
+Youth involvement in violent crimes reflects the exposure of young people to serious harm. Contact with the justice system is linked to future challenges in education, employment, and health for young people. This measure tracks the rate of arrests of youth under 18 for crimes against persons.
+
+-   **Data considerations:** Arrest data capture only instances observed by or reported to police and instances which policing authorities evaluate as being subject to arrest. They arise from policing practices as well as behavior. Thus, it is important not to equate this metric with the occurrence of crime among youth.
+
+-   **How is this measured?:** The arrest rate is the sum of arrests among juveniles for crimes against persons including murder, negligent manslaughter, kidnapping, sex offenses, aggravated assault, simple assault, and intimidation among juveniles, divided by the number of residents aged 10-17 (multiplied by 1,000).
+
+#### Notable Trends
+
+-   Arrest rates in both Albemarle and Charlottesville have seen a mostly downward trend since 2010. In Charlottesville the arrest rate was 5 per 1,000 youth in 2011 and has gone down to 0 recorded in 2024.
+
+-   The rate of arrests in both the county and city have remained below statewide trends over the past decade.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-arrest
+#| fig-cap: "Youth arrests for crimes against persons, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/vsp_arrest_rates.csv")
+
+df$rate <- df$rate_arrests
+df$label <- df$jurisdiction_by_geography 
+df$count_label <- prettyNum(df$number_of_arrestees_10to17, big.mark = ",")
+
+title <- "Rate of Youth Arrests for Crimes against Persons (Ages 10-17)"
+ytext <- "Rate per 1,000 Youth (Ages 10-17)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia State Police"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-arrest-img
+#| fig-cap: "Youth arrests for crimes against persons, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-32-rate-of-youth-arrests-fo.png")
+```
+:::
+
+### Arrests for Crimes Involving Firearms
+
+Gun violence is a leading cause of death and injury among youth in the U.S. Arrests of youth for crimes involving firearms can signal the severity of youth-involved violence as well as youth exposure to environments where guns are present. This measure presents the rate of arrests of youth aged 10 to 17 for any crime – from illegal possession to robbery to serious violent crime – involving a firearm. See [The State of Gun Violence in Charlottesville & Albemarle](https://communitypartnerships.github.io/local-gun-violence/data-overview.html){.external target="_blank"} for additional data on firearm violence in the community.
+
+-   **Data considerations:** Arrest data capture only instances observed by or reported to police and instances which policing authorities evaluate as being subject to arrest. They arise from policing practices as well as behavior. Thus, it is important not to equate this metric with the occurrence of crime among youth.
+
+-   **How is this measured?:** The arrest rate is the sum of arrests among juveniles for crimes involving firearms, divided by the number of residents aged 10-17 (multiplied by 1,000). Crimes include crimes against society like weapons law violations, crimes against property like theft and robbery, and crimes against persons like assault or manslaughter.
+
+#### Notable Trends
+
+-   Arrest rates for crimes involving firearms have fluctuated in Charlottesville, with modest peaks in 2016 through 2017 and again in 2022 and 2024. Arrest rates in Albemarle have remained consistently low throughout the period shown.
+
+-   Arrest rates for crimes involving firearms in Albemarle remained below statewide trends since 2010. In Charlottesville, the arrest rates are consistently higher, in some years notably so, than comparable rates across the state.
+
+::: {.content-visible when-format="html"}
+```{r}
+#| label: fig-firearm
+#| fig-cap: "Youth arrests for crimes involving firearms, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+# Set data
+df <- read_csv("../submodules/stepping-stones-2026/data/vsp_firearms_rates.csv")
+
+df$rate <- df$rate_firearms
+df$label <- df$jurisdiction_by_geography 
+df$count_label <- prettyNum(df$number_of_arrestees_10to17, big.mark = ",")
+
+title <- "Rate of Youth Arrests for Crimes involving Firearms (Ages 10-17)"
+ytext <- "Rate per 1,000 Youth (Ages 10-17)"
+xtext <- "Year"
+xlabels <- JS("function() { return this.value; }")
+source_text <- "Data Source: Virginia State Police"
+
+<<fig-series-rate>>
+
+```
+:::
+::: {.content-hidden when-format="html"}
+```{r}
+#| label: fig-firearm-img
+#| fig-cap: "Youth arrests for crimes involving firearms, rate per 1,000 youth ages 10-17, for 2010-2024 for Albemarle County, Charlottesville City, and Virginia."
+
+knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-33-rate-of-youth-arrests-fo.png")
+```
+:::
+
+## Contributors
+
+This report is a collaboration of many contributors, including:
+
+-   Elizabeth Mitchell, Senior Research Specialist, Center for Community Partnerships, University of Virginia
+-   Michele Claibourn, Director of Community-Centered Analysis, Center for Community Partnerships, University of Virginia and Assistant Professor, Batten School of Leadership and Public Policy, University of Virginia
+-   Misty Graves, Director, City of Charlottesville Department of Human Services
+-   Kaki Dimock, Chief Human Services Officer, Albemarle County
+-   Mary Stebbins, Director, Albemarle County Department of Social Services
+
+### About the Center for Community Partnerships
+
+Established in 2019, the mission of the UVA Center for Community Partnerships is to build mutually beneficial partnerships in university communities by advancing a transformative approach to the fundamental research mission, which will, in turn, reform institutional values, pedagogy, and operations. We envision universities that serve local communities by bringing rich research resources to bear and equipping students to lead in building a more just society.
+
+Community-Centered Analysis centers on community-driven partnerships to provide advocates, as well as civic and private sector leaders, with data and metrics, contextualized analysis, interactive maps and data visualizations, and narrative storytelling as a resource in pursuit of a more just region.
+
+### About the Charlottesville Department of Human Services (DHS)
+
+The City of Charlottesville's [Department of Human Services (DHS)](https://charlottesville.org/224/Human-Services) was created in 2010 to serve as a human services policy advisor to the City Manager in order to implement the social policy initiatives of the Charlottesville City Council. The vision of the Charlottesville City DHS is to serve as the community’s premier provider in meeting the therapeutic needs of youth and families, supporting the community’s efforts to improve equity, and address poverty and its impacts.
+
+Charlottesville DHS provides a variety of services and programs that improve and support the resilience, health, and well-being of youth, families, residents and community organizations. They support initiatives that make a positive impact on youth development, juvenile justice involvement, foster care, financial stability, housing stability, re-entry and community well-being.
+
+### About Albemarle County Human Services Programs
+ 
+[Albemarle County Human Services](https://www.albemarle.org/government/human-services) Programs include the Department of Social Services, the Office of Housing, which includes an affordable policy division and a housing voucher division, the Human Services Response Team (HART), and programs aimed at improving community access and engagement in county services. These services are unified by an interest in improving Albemarle County’s well-being and resilience.
+
+### Project Repository
+
+The work supporting this Stepping Stones Report, including our data collection documentation and the corresponding data, is publicly available on GitHub at https://github.com/virginiaequitycenter/stepping-stones-2026.
+
+### Citation
+
+UVA Center for Community Partnerships. Stepping Stones: A Report on Community Well-Being of Children and Families in Charlottesville and Albemarle. Published May 2026.
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](https://creativecommons.org/licenses/by/4.0/).
+
+## Appendix
+
+### Data Sources by Figure
+
+```{r}
+#| html-table-processing: none
+
+library(gt)
+
+df_sources <- read_csv("../submodules/stepping-stones-2026/data/appendix_data_sources.csv")
+
+df_sources %>% 
+  gt() %>% 
+  cols_width(`Figure` ~ "50%",
+             `Source` ~ "50%") %>% 
+  tab_style(
+    style = cell_text(v_align = "top"),
+    locations = cells_body()
+    )
+```
+

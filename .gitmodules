@@ -13,3 +13,6 @@
 [submodule "submodules/stepping-stones"]
 	path = submodules/stepping-stones
 	url = https://github.com/virginiaequitycenter/stepping-stones
+[submodule "submodules/stepping-stones-2026"]
+	path = submodules/stepping-stones-2026
+	url = https://github.com/virginiaequitycenter/stepping-stones-2026

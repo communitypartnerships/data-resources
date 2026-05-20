@@ -1,17 +1,15 @@
 [
   {
-    "listing": "/resources.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
+    "listing": "/dashboards.html",
     "items": [
-      "/reports/orange-dot-6.html"
+      "/dashboards/cville-data-dashboard.html",
+      "/dashboards/climate-dashboard.html"
     ]
   },
   {
     "listing": "/reports.html",
     "items": [
+      "/reports/stepping-stones-2026.html",
       "/reports/school-demographics-fall-2025.html",
       "/reports/orange-dot-6.html",
       "/reports/cville-heat-report.html",
@@ -22,10 +20,13 @@
     ]
   },
   {
-    "listing": "/dashboards.html",
+    "listing": "/index.html",
     "items": [
-      "/dashboards/cville-data-dashboard.html",
-      "/dashboards/climate-dashboard.html"
+      "/reports/orange-dot-6.html"
     ]
+  },
+  {
+    "listing": "/resources.html",
+    "items": []
   }
 ]

@@ -13,7 +13,7 @@ format:
     toc_depth: 3
     link-external-newwindow: true
 execute:
-  cache: true
+  # cache: true
   echo: false
   message: false
   warning: false
@@ -1526,7 +1526,7 @@ These data capture the recorded student behaviors that endanger student safety a
 ::: {.content-visible when-format="html"}
 ```{r}
 #| label: fig-sbar-beso
-#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2024-25 school years at ACPS, CCS, and Virginia public schools. The 2024-25 school year data was added to the online report."
 
 # Set data
 df <- read_csv("../submodules/stepping-stones-2026/data/student_behavior_events.csv")  %>% 
@@ -1552,7 +1552,7 @@ source_text <- "Data Source: Virginia Department of Education"
 ::: {.content-hidden when-format="html"}
 ```{r}
 #| label: fig-sbar-beso-img
-#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "School events recorded as Behaviors that Endanger Self or Others (BESO), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools. The 2024-25 school year data was added to the online report."
 
 knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-26-rate-of-beso-incidents-b.png")
 ```
@@ -1561,7 +1561,7 @@ knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_image
 ::: {.content-visible when-format="html"}
 ```{r}
 #| label: fig-sbar-pd
-#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2024-25 school years at ACPS, CCS, and Virginia public schools. The 2024-2025 school year data was added to the online report."
 
 # Set data
 df <- read_csv("../submodules/stepping-stones-2026/data/student_behavior_events.csv")  %>% 
@@ -1587,7 +1587,7 @@ source_text <- "Data Source: Virginia Department of Education"
 ::: {.content-hidden when-format="html"}
 ```{r}
 #| label: fig-sbar-pd-img
-#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "School events recorded as Persistently Dangerous Behaviors (PD), rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools. The 2024-2025 school year data was added to the online report."
 
 knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-27-rate-of-pd-incidents-per.png")
 ```
@@ -1603,12 +1603,12 @@ In-School suspensions (ISS) are a disciplinary exclusionary setting within the s
 
 #### Notable Trends
 
--   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2023-24 school year, around 27 of every 1,000 students were reported by CCS as receiving an ISS, compared to 50 per 1,000 students reported by ACPS.
+-   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2024-25 school year, around 45 of every 1,000 students were reported by CCS and ACPS as receiving an ISS.
 
 ::: {.content-visible when-format="html"}
 ```{r}
 # Set data
-df <- read_csv("../submodules/stepping-stones-2026/data/in_school_suspensions.csv")   %>% 
+df <- read_csv("../submodules/stepping-stones-2026/data/in_school_suspensions_sbar.csv")   %>% 
   mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
          division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
                                                         str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
@@ -1627,7 +1627,7 @@ xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().
 
 ```{r}
 #| label: fig-in-school
-#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2024-25 school years at ACPS, CCS, and Virginia public schools.  The 2024-2025 school year data was added to the online report."
 
 
 df <- df %>% filter(year >= 2022)
@@ -1668,7 +1668,7 @@ series_rate_chart
 ::: {.content-hidden when-format="html"}
 ```{r}
 #| label: fig-in-school-img
-#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "In-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools.  The 2024-25 school year data was added to the online report."
 
 knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-28-rate-of-in-school-suspen.png")
 ```
@@ -1684,12 +1684,12 @@ Out-of-School suspensions (OSS) are an exclusionary disciplinary tool that tempo
 
 #### Notable Trends
 
--   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2023-24 school year, around 64 of every 1,000 students were reported by CCS as receiving an OSS, compared to 29 per 1,000 students by ACPS.
+-   Due to the new implementation of Student Behavior and Administrative Response Collection (SBAR), there are likely inconsistencies between schools in Virginia in the adaptation of this new data reporting system. In the 2024-25 school year, around 66 of every 1,000 students were reported by CCS as receiving an OSS, compared to 33 per 1,000 students by ACPS.
 
 ::: {.content-visible when-format="html"}
 ```{r}
 # Set data
-df <- read_csv("../submodules/stepping-stones-2026/data/out_of_school_suspensions.csv")  %>% 
+df <- read_csv("../submodules/stepping-stones-2026/data/out_of_school_suspensions_sbar.csv")  %>% 
   mutate(year = as.numeric(paste0("20", str_sub(school_year,-2,-1))),
          division_name = case_when(str_detect(division_name, "Albemarle") ~ "Albemarle County Public Schools", 
                                                         str_detect(division_name, "Charlottesville") ~ "Charlottesville City Schools",
@@ -1708,7 +1708,7 @@ xlabels <- JS("function() { return this.value - 1 + '-' + this.value.toString().
 
 ```{r}
 #| label: fig-out-school
-#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2024-25 school years at ACPS, CCS, and Virginia public schools.  The 2024-25 school year data was added to the online report."
 
 
 df <- df %>% filter(year >= 2022)
@@ -1749,7 +1749,7 @@ series_rate_chart
 ::: {.content-hidden when-format="html"}
 ```{r}
 #| label: fig-out-school-img
-#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools."
+#| fig-cap: "Out-of-school suspensions, rate per 1,000 students, for the 2021-22 through 2023-24 school years at ACPS, CCS, and Virginia public schools.  The 2024-25 school year data was added to the online report."
 
 knitr::include_graphics("../submodules/stepping-stones-2026/reports/figure_images/fig-29-rate-of-out-of-school-su.png")
 ```

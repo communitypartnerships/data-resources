@@ -9,6 +9,10 @@ listing:
     fields: [image, title, date, categories]
     date-format: "MMMM YYYY"
     contents:
+      - path: "reports/stepping-stones-2026.qmd"
+        title: "Stepping Stones 2026 Report"
+        image: images/children-classroom-floor.jpg
+        image-alt: "Children sitting on classroom floor raising hands."
       - path: https://communitypartnerships.github.io/community-wellbeing/
         image: images/mural.jpeg
         image-alt: "Mural on brick wall of holding hands and trees."
@@ -16,13 +20,6 @@ listing:
         date: "July 2025"
         date-format: "MMMM YYYY"
         categories: [Regional Data, Education, Health, Housing, Youth & Families]
-      - path: "reports/orange-dot-6.qmd"
-        image: images/income-region-map-edit.png
-        image-alt: "Simplified map of local counties."
-        title: "Orange Dot Report 6.0"
-        date: "October 2024"
-        date-format: "MMMM YYYY"
-        categories: [Regional Data, Jobs & Wages, Housing]
 format:
   html:
     toc: false

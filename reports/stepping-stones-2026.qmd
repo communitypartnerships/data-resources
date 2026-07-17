@@ -3,8 +3,8 @@ title: "Stepping Stones Report"
 subtitle: "Community Well-Being of Children and Families in Charlottesville and Albemarle"
 date: "May 2026"
 date-format: "MMMM YYYY"
-image: ../../images/sol-detail-edit.png
-image-alt: "Simplified line chart illustration."
+image: ../../images/children-classroom-floor.jpg
+image-alt: "Children sitting on classroom floor raising hands."
 categories: [Regional Data, Youth & Families, Education, Health]
 format: 
   html:
@@ -48,9 +48,9 @@ locality_pal <- c("#193CBC", "#589ACF", "#FAC484")
 
 ```
 
-[Download Report PDF](../pdfs//stepping-stones-2026-final.pdf){.external target="_blank"}
+[Download Report PDF](../pdfs/stepping-stones-2026-final.pdf){.external target="_blank"}
 </br>
-[Download Executive Summary PDF](../pdfs//stepping-stones-2026-summary-final.pdf){.external target="_blank"}
+[Download Executive Summary PDF](../pdfs/stepping-stones-2026-summary-final.pdf){.external target="_blank"}
 
 <hr>
 
@@ -60,9 +60,9 @@ The Stepping Stones Report provides trend data for a selection of measures on th
 
 ### Summary & Report PDF
 
-[Stepping Stones 2026 Executive Summary](../pdfs//stepping-stones-2026-summary-final.pdf){.external target="_blank"}
+[Stepping Stones 2026 Executive Summary](../pdfs/stepping-stones-2026-summary-final.pdf){.external target="_blank"}
 
-This interactive online version of the Stepping Stones Report is also available as a PDF: [Stepping Stones 2026 Report PDF](../pdfs//stepping-stones-2026-final.pdf){.external target="_blank"}
+This interactive online version of the Stepping Stones Report is also available as a PDF: [Stepping Stones 2026 Report PDF](../pdfs/stepping-stones-2026-final.pdf){.external target="_blank"}
 
 ### Approach
 

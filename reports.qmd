@@ -13,6 +13,8 @@ listing:
     categories: true
     date-format: "MMMM YYYY"
     contents:
+      - path: "reports/stepping-stones-supplement-2026.qmd"
+        title: "Stepping Stones 2026 Supplement Report"
       - path: "reports/stepping-stones-2026.qmd"
         title: "Stepping Stones 2026 Report"
         image: images/children-classroom-floor.jpg

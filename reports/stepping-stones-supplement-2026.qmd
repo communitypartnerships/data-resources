@@ -90,9 +90,8 @@ tracts_geo <- tracts_geo %>% st_transform(tracts_geo, crs = 4326)
 
 ```
 
-::: {.content-hidden when-format="html"}
-## Executive Summary {.unlisted .unnumbered}
-:::
+[Download Report PDF](../pdfs/stepping-stones-2026-supplement.pdf){.external target="_blank"}
+</br>
 
 ## Introduction
 
@@ -100,27 +99,25 @@ The [Stepping Stones 2026 Report](/reports/stepping-stones-2026.html) provides t
 
 Disaggregated data is data that is broken down and analyzed by race, ethnicity, or other defined subgroups. Racially and other disaggregated data is valuable for equity assessments and promoting equitable policy making. Equity assessments provide understanding on whether current policies and institutions are impacting or serving subgroups differently; equitable policy making ensures that new policies will produce more equal outcomes across different populations.
 
-The disaggregated data in this report is intended to center equity. Aggregated data – summary statistics for the population as a whole – can mask vastly different experiences and outcomes among distinct populations. As shown below, many of the measures of youth and community wellbeing vary by race, ethnicity, socioeconomic status, or geography. Some categories of people are disproportionately harmed or benefited. Working towards health and well-being for the youth in our region must mean *all* youth.
+Summary statistics for the population as a whole can mask vastly different experiences and outcomes among distinct populations. As shown in this supplement, many of the measures of youth and community well-being vary by race, ethnicity, socioeconomic status, or geography. Some groups of people are disproportionately harmed or benefited. Working towards health and well-being for the youth in our region must mean *all* youth.
 
-Our approach to this supplemental report follows the principles from the primary report: we seek to make the work open, reproducible, and contextualized. We use publicly available data and data requested from state-level agencies, our work is documented so that it can be reproduced by others, and we provide context alongside the data, including an overview of how each measure matters for youth wellbeing.
+Our approach to this supplemental report follows the principles from the primary report: we seek to make the work open, reproducible, and contextualized. We use publicly available data and data requested from state-level agencies, our work is documented so that it can be reproduced by others, and we provide context alongside the data, including an overview of how each measure matters for youth well-being.
 
 ::: {.content-visible when-format="html"}
-<!-- ### Summary & Report PDF -->
+### Summary & Report PDF
 
-<!-- [Stepping Stones 2026 Supplement Executive Summary](/stepping-stones-2026-supplement-exec-summary.pdf){.external target="_blank"} -->
-
-<!-- This interactive online version of the Stepping Stones Report is also available as a PDF: [Stepping Stones 2026 Supplement Report PDF]() -->
+This interactive online version of the Stepping Stones Report is also available as a PDF: [Stepping Stones 2026 Supplement Report PDF](../pdfs/stepping-stones-2026-supplement.pdf){.external target="_blank"}
 :::
 
 ## Considerations
 
-Understanding the full context of these data is especially important when considering racial disparities. Youth of color are disproportionately impacted by many of the included outcomes relative to white youth due to the long history of racial inequality in policies, investments and opportunities. We hope that highlighting the disparate outcomes of youth in our region raises questions about what leaders, educators, and stakeholders can do to ensure all youth, regardless of their racial or ethnic identity, have equal opportunity to thrive in our community.
+Understanding the full context of these data is especially important when considering racial and ethnic disparities. Youth of color are disproportionately impacted by many of the included outcomes relative to white youth due to the long history of racial inequality in policies, investments and opportunities. We hope that highlighting the disparate outcomes of youth in our region raises questions about what leaders, educators, and stakeholders can do to ensure all youth, regardless of their racial or ethnic identity, have equal opportunity to thrive in our community.
 
 The table below provides the racial and ethnic composition of Charlottesville and Albemarle youth (residents under 18 years old). It is important to note the proportion of a subgroup in the overall population when considering the outcomes in this report. If 40% of youth in a certain racial group experience a particular outcome, knowing whether that racial group constitutes 2% or 80% of the overall population matters for understanding the number of youth impacted.
 
 ```{r, results='asis'}
 #| label: tbl-population
-#| tbl-cap: "Youth population in Albemarle / Charlottesville / VA, disaggregated by racial and ethnic subgroups: White (67% / 55% / 52%), White, Non-Hispanic (65% / 52% / 50%), Black (9% / 18% / 19%), Multiracial(13% / 18% / 16%), Hispanic (12% / 12% / 16%), Asian (5% / 5% / 6%), Other Racial Identities (5% / 4% / 6%), American Indian or Alaskan Native (0.5% / 0% / 0.4%), and Native Hawaiian or Other Pacific Islander (0% / 0% / 0.1%)."
+#| tbl-cap: "Youth population estimates in Albemarle / Charlottesville / VA, disaggregated by racial and ethnic subgroups: White (67% / 55% / 52%), White, Non-Hispanic (65% / 52% / 50%), Black (9% / 18% / 19%), Multiracial (13% / 18% / 16%), Hispanic (12% / 12% / 16%), Asian (5% / 5% / 6%), Other Racial Identities (5% / 4% / 6%), American Indian or Alaskan Native (0.5% / 0% / 0.4%), and Native Hawaiian or Other Pacific Islander (0% / 0% / 0.1%)."
 #| tbl-cap-location: bottom
 #| html-table-processing: none
 
@@ -152,7 +149,7 @@ pop_percents %>%
     locations = list(cells_column_labels(), cells_body())
   ) %>%
   tab_header(
-    title = md("**Youth Population by Race and Ethnicity in Albemarle County, City of Charlottesville and Virginia in 2024**")
+    title = md("**Youth Population Estimates by Race and Ethnicity in Albemarle County, City of Charlottesville and Virginia in 2024**")
   ) %>%
   tab_source_note(
     source_note = md("Data Source: U.S. Census Bureau, American Community Survey 5-year estimates")
@@ -617,7 +614,7 @@ knitr::include_graphics("../submodules/stepping-stones-2026/reports/supplement_f
 
 ### Youth Labor Force Participation and Unemployment
 
-Labor force participation among young people and youth unemployment can shed light on both the health of the economy and the well-being of young people. Youth employment has positive implications for future life outcomes, however, youth employment rates are [very low relative to historical standards](https://www.urban.org/research/publication/youth-workforce-detailed-picture){.external target="_blank"}. High unemployment rates for youth may suggest an unavailability of jobs for youth or a mismatch between the skills that young people possess and the skills employers are seeking.
+Labor force participation among young people and youth unemployment can shed light on both the health of the economy and the well-being of young people. Youth employment has positive implications for future life outcomes; however, youth employment rates are [very low relative to historical standards](https://www.urban.org/research/publication/youth-workforce-detailed-picture){.external target="_blank"}. High unemployment rates for youth may suggest an unavailability of jobs for youth or a mismatch between the skills that young people possess and the skills employers are seeking.
 
 The youth labor force participation rate – the number of 16-19 year olds who are employed or are seeking employment as a percentage of the number of residents aged 16-19 – and the youth unemployment rate – the number of 16-19 year olds who have reported that they do not have a job but are ready to work and have been seeking employment within the last 4 weeks – are shown for each census tract in Charlottesville and Albemarle. Exploring this data geographically can highlight where local youth are more likely to be in the labor force and unemployed, compared to local and statewide trends. As young people may be more restricted in their ability to travel larger distances for work, jobs nearby can be a priority.
 
@@ -1139,7 +1136,7 @@ knitr::include_graphics("../submodules/stepping-stones-2026/reports/supplement_f
 
 ### Assessments and Investigations by Child Protective Services
 
-Reports of potential child neglect or abuse are one indicator of child wellbeing. Upon receiving a referral, CPS determines whether a case should be accepted for followup through a family assessment for lower-risk cases, focused on identifying needed supports and services, or an investigation for more severe allegations. Childhood maltreatment, in addition to having an immediate and negative impact on children, has been linked to later [physical, psychological, and behavioral consequences](https://www.childwelfare.gov/topics/safety-and-risk/definitions-child-abuse-and-neglect/){.external target="_blank"}. Accepted cases, though, are not equivalent to the presence of abuse or neglect. In Charlottesville, Albemarle, and statewide in 2024, less than a quarter of accepted referrals lead to an investigation and less than one-third of investigations lead to a finding of abuse or neglect.
+Reports of potential child neglect or abuse are one indicator of child well-being. Upon receiving a referral, CPS determines whether a case should be accepted for followup through a family assessment for lower-risk cases, focused on identifying needed supports and services, or an investigation for more severe allegations. Childhood maltreatment, in addition to having an immediate and negative impact on children, has been linked to later [physical, psychological, and behavioral consequences](https://www.childwelfare.gov/topics/safety-and-risk/definitions-child-abuse-and-neglect/){.external target="_blank"}. Accepted cases, though, are not equivalent to the presence of abuse or neglect. In Charlottesville, Albemarle, and statewide in 2024, less than a quarter of accepted referrals lead to an investigation and less than one-third of investigations lead to a finding of abuse or neglect.
 
 The following figures show the rate per 1,000 children of referrals to Child Protective Services accepted for assessment or investigation by race and ethnicity.
 
@@ -1469,7 +1466,7 @@ knitr::include_graphics("../submodules/stepping-stones-2026/reports/supplement_f
 
 ### Infant Mortality
 
-Much like low birth-weight,[ ](https://virginiaequitycenter.github.io/cville-equity-atlas/reports/stepping-stones/#infant-deaths){.external target="_blank"}infant mortality is an indicator of infant health and family access to health care. Infant mortality refers to the rate of babies who die before their first birthday per 1,000 live births, and it is a tragedy that [disproportionately impacts Black families](https://minorityhealth.hhs.gov/omh/browse.aspx?lvl=4&lvlid=23){.external target="_blank"} in part because these families are less likely to receive prenatal and postnatal care. The most common causes of infant mortality include birth defects, preterm births and low birth-weight, maternal complications during pregnancy, Sudden Infant Death Syndrome, and injuries.
+Much like low birth-weight, infant mortality is an indicator of infant health and family access to health care. Infant mortality refers to the rate of babies who die before their first birthday per 1,000 live births, and it is a tragedy that [disproportionately impacts Black families](https://minorityhealth.hhs.gov/omh/browse.aspx?lvl=4&lvlid=23){.external target="_blank"} in part because these families are less likely to receive prenatal and postnatal care. The most common causes of infant mortality include birth defects, preterm births and low birth-weight, maternal complications during pregnancy, Sudden Infant Death Syndrome, and injuries.
 
 The figures below show data from the Virginia Department of Health’s (VDH), which records infant mortality rate by maternal race and ethnicity. The rate is calculated as a 3-year rolling average due to the low number of infant deaths recorded locally each year.
 

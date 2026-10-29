@@ -1,12 +1,9 @@
 [
   {
-    "listing": "/resources.html",
-    "items": []
-  },
-  {
-    "listing": "/index.html",
+    "listing": "/dashboards.html",
     "items": [
-      "/reports/stepping-stones-2026.html"
+      "/dashboards/cville-data-dashboard.html",
+      "/dashboards/climate-dashboard.html"
     ]
   },
   {
@@ -24,10 +21,13 @@
     ]
   },
   {
-    "listing": "/dashboards.html",
+    "listing": "/index.html",
     "items": [
-      "/dashboards/cville-data-dashboard.html",
-      "/dashboards/climate-dashboard.html"
+      "/reports/stepping-stones-2026.html"
     ]
+  },
+  {
+    "listing": "/resources.html",
+    "items": []
   }
 ]

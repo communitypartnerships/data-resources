@@ -9,17 +9,20 @@ listing:
     fields: [image, title, date, categories]
     date-format: "MMMM YYYY"
     contents:
+      - path: "reports/orange-dot-7.qmd"
+        title: "Orange Dot Report 7.0: Family Self-Sufficiency in the Charlottesville Region"
+        image: images/cville-mural.webp
       - path: "reports/stepping-stones-2026.qmd"
-        title: "Stepping Stones 2026 Report"
+        title: "Stepping Stones 2026 Report: Community Well-Being of Children and Families in Charlottesville and Albemarle"
         image: images/children-classroom-floor.jpg
         image-alt: "Children sitting on classroom floor raising hands."
-      - path: https://communitypartnerships.github.io/community-wellbeing/
-        image: images/mural.jpeg
-        image-alt: "Mural on brick wall of holding hands and trees."
-        title: "Albemarle and Charlottesville Community Wellbeing Profiles"
-        date: "July 2025"
-        date-format: "MMMM YYYY"
-        categories: [Regional Data, Education, Health, Housing, Youth & Families]
+      # - path: https://communitypartnerships.github.io/community-wellbeing/
+      #   image: images/mural.jpeg
+      #   image-alt: "Mural on brick wall of holding hands and trees."
+      #   title: "Albemarle and Charlottesville Community Wellbeing Profiles"
+      #   date: "July 2025"
+      #   date-format: "MMMM YYYY"
+      #   categories: [Regional Data, Education, Health, Housing, Youth & Families]
 format:
   html:
     toc: false

@@ -13,6 +13,9 @@ listing:
     categories: true
     date-format: "MMMM YYYY"
     contents:
+      - path: "reports/orange-dot-7.qmd"
+        title: "Orange Dot Report 7.0"
+        image: images/cville-mural.webp
       - path: "reports/stepping-stones-supplement-2026.qmd"
         title: "Stepping Stones 2026 Supplement Report"
       - path: "reports/stepping-stones-2026.qmd"

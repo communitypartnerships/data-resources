@@ -123,7 +123,7 @@ source_acs <- "Data Source: American Community Survey (ACS), 2020-2024; U.S. Cen
 source_pums <- "Data Source: ACS Public Use Microdata Sample (PUMS), 2020-2024; U.S. Census Bureau"
 ```
 
-[Download Report PDF](../pdfs/orange-dot-7-final-print.pdf){.external target="_blank"}
+[Download Report PDF](../pdfs/orange-dot-7-final-print-sm.pdf){.external target="_blank"}
 
 <hr>
 
